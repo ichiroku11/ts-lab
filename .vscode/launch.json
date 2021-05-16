@@ -13,7 +13,8 @@
 				"-A",
 				"${file}"
 			],
-			"attachSimplePort": 9229
+			"attachSimplePort": 9229,
+			"outputCapture": "std"
 		}
 	]
 }
