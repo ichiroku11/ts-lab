@@ -1,0 +1,2 @@
+# ts-lab
+Try TypeScript.
