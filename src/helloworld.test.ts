@@ -3,8 +3,8 @@
 
 import {
 	assert
- } from "https://deno.land/std/testing/asserts.ts";
+} from "https://deno.land/std/testing/asserts.ts";
 
- Deno.test("Hello Test", () => {
+Deno.test("Hello Test", () => {
 	assert("Hello");
-  });
+});
