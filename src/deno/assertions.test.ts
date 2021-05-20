@@ -27,3 +27,14 @@ Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () =
 	// string
 	assertNotEquals("x", "y");
 });
+
+// todo:
+// assertStrictEquals
+// assertExists
+// assertStringIncludes
+// assertArrayIncludes
+// assertMatch
+// assertNotMatch
+// assertObjectMatch
+// assertThrows
+// assertThrowsAsync
