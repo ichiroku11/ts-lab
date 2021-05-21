@@ -4,7 +4,8 @@
 import {
 	assertEquals,
 	assertNotEquals,
-	assertExists
+	assertExists,
+	assertStringIncludes
 } from "https://deno.land/std/testing/asserts.ts";
 
 // assertEquals
@@ -44,8 +45,16 @@ Deno.test("assertExists_null、undefined以外かどうかを検証する", () =
 	assertExists("");
 });
 
-// todo:
 // assertStringIncludes
+Deno.test("assertStringIncludes_文字列が含まれているかを検証する", () => {
+	assertStringIncludes("abcdefg", "abc");
+	assertStringIncludes("あいうえお", "あい");
+
+	// 大文字小文字は区別されるため失敗する
+	//assertStringIncludes("abcdefg", "ABC");
+});
+
+// todo:
 // assertArrayIncludes
 // assertMatch
 // assertNotMatch
