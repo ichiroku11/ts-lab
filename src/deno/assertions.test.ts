@@ -7,6 +7,7 @@ import {
 	assertExists
 } from "https://deno.land/std/testing/asserts.ts";
 
+// assertEquals
 Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
 	// number
 	assertEquals(1, 1);
@@ -18,6 +19,7 @@ Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
 	assertEquals("x", "x");
 });
 
+// assertNotEquals
 Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () => {
 	// number
 	assertNotEquals(1, 2);
@@ -32,6 +34,7 @@ Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () =
 // todo:
 // assertStrictEquals
 
+// assertExists
 Deno.test("assertExists_null、undefined以外かどうかを検証する", () => {
 	// nullかundefinedだと失敗する
 	//assertExists(null);
@@ -41,6 +44,7 @@ Deno.test("assertExists_null、undefined以外かどうかを検証する", () =
 	assertExists("");
 });
 
+// todo:
 // assertStringIncludes
 // assertArrayIncludes
 // assertMatch
