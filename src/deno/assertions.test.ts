@@ -38,12 +38,13 @@ Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () =
 
 // assertExists
 Deno.test("assertExists_null、undefined以外かどうかを検証する", () => {
-	// nullかundefinedだと失敗する
-	//assertExists(null);
-	//assertExists(undefined);
 	assertExists(false);
 	assertExists(0);
 	assertExists("");
+
+	// nullかundefinedだと失敗する
+	//assertExists(null);
+	//assertExists(undefined);
 });
 
 // assertStringIncludes
