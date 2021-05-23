@@ -8,7 +8,8 @@ import {
 	assertStringIncludes,
 	assertArrayIncludes,
 	assertMatch,
-	assertNotMatch
+	assertNotMatch,
+	assertObjectMatch
 } from "https://deno.land/std/testing/asserts.ts";
 
 // assertEquals
@@ -80,7 +81,18 @@ Deno.test("assertNotMatch_正規表現にマッチしないかを検証する", 
 	assertNotMatch("abcdefg", /^b.+/);
 });
 
-// todo:
 // assertObjectMatch
+Deno.test("assertObjectMatch_actualで指定したオブジェクトがexpectedで指定したオブジェクトのサブセットかを検証する", () => {
+	assertObjectMatch({}, {});
+
+	assertObjectMatch({ x: 0 }, { x: 0 });
+	assertObjectMatch({ x: 1, y: 1 }, { x: 1 });
+
+	// xの値が異なるため、アサートに失敗する
+	// assertObjectMatch({ x: "" }, { x: 0 });
+	// assertObjectMatch({ x: 1 }, { x: 0 });
+});
+
+// todo:
 // assertThrows
 // assertThrowsAsync
