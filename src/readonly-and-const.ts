@@ -2,7 +2,7 @@
 // https://typescript-jp.gitbook.io/deep-dive/type-system/readonly
 
 // exportするとtsファイル間で名前が衝突しても問題ない様子
-export const readonlyAndConst = null;
+export const nothing = null;
 
 // constは変数の値を変更できないようにするだけ
 // なので配列は値の追加・変更・削除ができる

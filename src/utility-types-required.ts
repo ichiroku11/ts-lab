@@ -1,7 +1,7 @@
 // Required<Type>
 // https://www.typescriptlang.org/docs/handbook/utility-types.html#requiredtype
 
-export const utilityTypesRequired = null;
+export const nothing = null;
 
 // Required<Type>でTypeのプロパティが必須になる
 

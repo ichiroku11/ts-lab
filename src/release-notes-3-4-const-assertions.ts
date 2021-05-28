@@ -3,7 +3,7 @@
 
 // deno-lint-ignore-file prefer-const
 
-export const releaseNotes34ConstAssertions = null;
+export const nothing = null;
 
 // constアサーション
 // - as const

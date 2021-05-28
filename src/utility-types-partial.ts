@@ -1,7 +1,7 @@
 // Partial<Type>
 // https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype
 
-export const utilityTypesPartial = null;
+export const nothing = null;
 
 // Partial<Type>でTypeのプロパティがoptionalになる
 
