@@ -11,7 +11,7 @@ interface Person {
 	location: string;
 }
 
-// keyof T演算子を使うと、Tのプロパティ名の型を取得できる
+// keyof T演算子を使うと、Tのプロパティ名の文字列リテラル型の合併として取得できる
 
 // PersonKeys型には以下だけを指定できる
 // "name" | "age" | "location"
