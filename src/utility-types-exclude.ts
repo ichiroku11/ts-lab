@@ -17,3 +17,5 @@ type Type2 = Exclude<number | string | boolean, string>;
 const v2: Type2 = true;
 console.log(v2);
 
+// サンプルにあるこの式の"Function"がエラーに
+//type Type3 = Exclude<string | number | (() => void), Function>;
