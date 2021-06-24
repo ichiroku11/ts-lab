@@ -10,7 +10,7 @@ export const nothing = null;
 type Type1 = Parameters<() => void>;
 
 // type Type2 = [p1: string, p2: number]
-type Type2 = Parameters<(p1: string, p2: number) => any>;
+type Type2 = Parameters<(p1: string, p2: number) => void>;
 
 // type Type3 = [arg: {
 //	a: number;
