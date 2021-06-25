@@ -12,3 +12,14 @@ type Type1 = ReturnType<() => void>;
 // type Type2 = string
 type Type2 = ReturnType<() => string>;
 
+// type Type3 = {
+//	a: number;
+//	b: string;
+// }
+function f1(): { a: number, b: string } {
+	return {
+		a: 0,
+		b: ""
+	};
+}
+type Type3 = ReturnType<typeof f1>;
