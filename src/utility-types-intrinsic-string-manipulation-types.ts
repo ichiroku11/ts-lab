@@ -12,7 +12,11 @@ type T1 = "hello";
 type T1Uppercase = Uppercase<T1>;
 
 // Lowercase<StringType>
-// todo:
+// StringTypeをすべて小文字に変換する
+type T2 = "HELLO";
+// type T2Lowercase = "hello"
+type T2Lowercase = Lowercase<T2>;
+
 
 // Capitalize<StringType>
 // todo:
