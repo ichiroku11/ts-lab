@@ -17,10 +17,15 @@ type T2 = "HELLO";
 // type T2Lowercase = "hello"
 type T2Lowercase = Lowercase<T2>;
 
-
 // Capitalize<StringType>
-// todo:
-
+// StringTypeの1文字目を大文字に変換する
+type T3 = "hello";
+// type T3Capitalize = "Hello"
+type T3Capitalize = Capitalize<T3>;
 
 // Uncapitalize<StringType>
-// todo:
+// StringTypeの1文字目を小文字に変換する
+type T4 = "HELLO";
+// type T4Uncapitalize = "hELLO"
+type T4Uncapitalize = Uncapitalize<T4>;
+
