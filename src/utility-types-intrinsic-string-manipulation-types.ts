@@ -4,6 +4,7 @@
 // Uncapitalize<StringType>
 // https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#intrinsic-string-manipulation-types
 
+export const nothing = null;
 
 // Uppercase<StringType>
 // StringTypeをすべて大文字に変換する

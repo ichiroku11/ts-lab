@@ -1,6 +1,8 @@
 // ThisParameterType<Type>
 // https://www.typescriptlang.org/docs/handbook/utility-types.html#thisparametertypetype
 
+export const nothing = null;
+
 function toHexString(this: number): string {
 	return this.toString(16);
 }
