@@ -1,5 +1,6 @@
 // ThisParameterType<Type>
 // https://www.typescriptlang.org/docs/handbook/utility-types.html#thisparametertypetype
+// 関数のthisパラメータの型を取得する
 
 export const nothing = null;
 
