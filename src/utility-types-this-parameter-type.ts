@@ -1,2 +1,15 @@
 // ThisParameterType<Type>
 // https://www.typescriptlang.org/docs/handbook/utility-types.html#thisparametertypetype
+
+function toHexString(this: number): string {
+	return this.toString(16);
+}
+
+// valueの型はnumber
+function numberToHexString(value: ThisParameterType<typeof toHexString>): string {
+	return toHexString.apply(value);
+}
+
+const value = numberToHexString(10);
+console.log(value);
+// a
