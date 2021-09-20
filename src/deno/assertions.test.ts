@@ -10,7 +10,7 @@ import {
 	assertMatch,
 	assertNotMatch,
 	assertObjectMatch
-} from "https://deno.land/std/testing/asserts.ts";
+} from "https://deno.land/std@0.107.0/testing/asserts.ts";
 
 // assertEquals
 Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
