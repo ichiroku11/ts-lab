@@ -1,7 +1,5 @@
 // keyof and Lookup Types
 // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html#keyof-and-lookup-types
-// https://www.typescriptlang.org/docs/handbook/2/keyof-types.html#the-keyof-type-operator
-
 
 export const nothing = null;
 
