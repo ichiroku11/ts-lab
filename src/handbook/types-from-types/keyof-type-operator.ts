@@ -1,4 +1,4 @@
-// keyof演算子
+// Keyof Type Operator
 // https://www.typescriptlang.org/docs/handbook/2/keyof-types.html
 
 export const nothing = null;
