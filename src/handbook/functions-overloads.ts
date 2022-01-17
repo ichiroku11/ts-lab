@@ -1,5 +1,7 @@
 // https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
 
+export const nothing = null;
+
 // Always prefer parameters with union types instead of overloads when possible
 // 可能であれば、オーバーロードではなくユニオン型のパラメータを常に好む
 
