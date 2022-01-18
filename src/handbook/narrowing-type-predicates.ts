@@ -2,7 +2,12 @@
 
 export const nothing = null;
 
-// 型述語（type predicate）を使ってユーザー定義の型ガード（user-defined type guard）
+// 関数におけるユーザー定義の型ガード（user-defined type guard）
+// 型述語（type predicate）を使って関数を定義できる
+// 型述語は関数の戻り値にparameterName is Typeと書く
+
+// クラスやインターフェイスのメソッドにおけるユーザー定義の型ガードは以下を参照
+// classes-this-based-type-guards.ts
 
 class Bird {
 	public fly(): void {
@@ -18,7 +23,6 @@ class Cat {
 
 type Animal = Bird | Cat;
 
-// 型述語は、関数の戻り値にparameterName is Typeと書く
 // この関数がtrueを返した場合、パラメータanimalの型はBirdになる
 function isBird(animal: Animal): animal is Bird {
 	return animal instanceof Bird;
