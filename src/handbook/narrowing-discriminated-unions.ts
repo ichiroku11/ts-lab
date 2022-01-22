@@ -8,7 +8,7 @@ export const nothing = null;
 // TypeScript considers that to be a discriminated union, and can narrow out the members of the union.
 
 // すべてのユニオン型が共通のリテラル型のプロパティを持つとき、
-// ユニオン型のメンバーを絞り込める
+// そのプロパティを使ってユニオン型のメンバーを絞り込める
 
 interface Circle {
 	kind: "circle";
