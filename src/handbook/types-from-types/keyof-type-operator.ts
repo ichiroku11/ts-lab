@@ -3,6 +3,17 @@
 
 export const nothing = null;
 
+// keyof演算子
+// オブジェクトのキーの型を取得できる
+// type VectorKey = "x" | "y"
+type VectorKey = keyof {
+	x: number;
+	y: number;
+};
+const key1: VectorKey = "x";
+console.log(key1)
+
+
 // keyofはインデクサの型も取得できる
 // 配列っぽい型のインデクサのキーの型を取得する
 type Arrayish<TValue> = {
@@ -11,8 +22,8 @@ type Arrayish<TValue> = {
 
 // type ArrayishKey = number
 type ArrayishKey = keyof Arrayish<unknown>;
-const key1: ArrayishKey = 1;
-console.log(key1);
+const key2: ArrayishKey = 1;
+console.log(key2);
 
 
 // Map風の型のインデクサのキーの型を取得する
@@ -23,5 +34,5 @@ type Mapish<TValue> = {
 // type MapishKey = string | number
 // JavaScriptのオブジェクトの数値のキーが文字列に変換されるため、string | number
 type MapishKey = keyof Mapish<unknown>;
-const key2: MapishKey = "x";
-console.log(key2);
+const key3: MapishKey = "x";
+console.log(key3);
