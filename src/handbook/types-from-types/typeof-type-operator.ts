@@ -3,3 +3,17 @@
 
 export const nothing = null;
 
+// boolean
+console.log(typeof true);
+
+// number
+console.log(typeof 1);
+
+// string
+console.log(typeof "");
+
+// object
+console.log(typeof {});
+
+// function
+console.log(typeof function() {});
