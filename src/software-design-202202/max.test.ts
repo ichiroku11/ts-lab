@@ -2,7 +2,7 @@ import {
 	assertEquals
 } from "https://deno.land/std@0.131.0/testing/asserts.ts";
 
-// 命令型プログラミングと関数型プログラミングそれぞれで、配列ないの最大値を返す関数を書いてみる
+// 命令型プログラミングと関数型プログラミングそれぞれで配列ないの最大値を返す関数を書いてみる
 // 配列内の最大値を返す
 type MaxFunc = (values: number[]) => number;
 

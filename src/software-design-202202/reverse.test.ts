@@ -2,7 +2,7 @@ import {
 	assertEquals
 } from "https://deno.land/std@0.131.0/testing/asserts.ts";
 
-// 命令型プログラミングと関数型プログラミングそれぞれで、配列を逆順にする関数を書いてみる
+// 命令型プログラミングと関数型プログラミングそれぞれで配列を逆順にする関数を書いてみる
 // 配列を逆順にする関数
 type ReverseFunc = (values: number[]) => number[];
 
