@@ -2,6 +2,8 @@
 // https://deno.land/manual@main/testing/assertions
 
 import {
+	assert,
+	assertFalse,
 	assertEquals,
 	assertNotEquals,
 	assertExists,
@@ -11,6 +13,17 @@ import {
 	assertNotMatch,
 	assertObjectMatch
 } from "testing/asserts.ts";
+
+Deno.test("assert_truthyを確認する", () => {
+	assert(true);
+	assert(1);
+	assert("a");
+
+	// 以下はfalsyなので失敗する
+	//assert(false);
+	//assert(0);
+	//assert("");
+});
 
 // assertEquals
 Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
