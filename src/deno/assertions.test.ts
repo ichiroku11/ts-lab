@@ -25,6 +25,12 @@ Deno.test("assert_truthyを確認する", () => {
 	//assert("");
 });
 
+Deno.test("assertFalse_falsyを確認する", () => {
+	assertFalse(false);
+	assertFalse(0);
+	assertFalse("");
+});
+
 // assertEquals
 Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
 	// number
