@@ -15,7 +15,7 @@ Deno.test("toString_2進数表記の文字列を取得する", async (context) =
 	];
 
 	for (const [source, expected] of testData) {
-		await context.step(`${source}.toString(2) => ${expected}`, () => {
+		await context.step(`${source}.toString(2) => "${expected}"`, () => {
 			// Act
 			const actual = source.toString(2);
 			// Assert

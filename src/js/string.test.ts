@@ -13,7 +13,7 @@ Deno.test("padStart_文字列の左側から0埋めできる", async (context) =
 	];
 
 	for (const [source, expected] of testData) {
-		await context.step(`${source}.pardStart(8, "0") => ${expected}`, () => {
+		await context.step(`"${source}".pardStart(8, "0") => "${expected}"`, () => {
 			// Act
 			const actual = source.padStart(8, "0");
 
