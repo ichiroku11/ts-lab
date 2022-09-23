@@ -8,6 +8,7 @@ import {
 Deno.test("toString_2進数表記の文字列を取得する", async (context) => {
 	// Arrange
 	const testData = [
+		// [srouce, expected]
 		[0, "0"],
 		[1, "1"],
 		[255, "11111111"]

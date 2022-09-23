@@ -7,6 +7,7 @@ import {
 Deno.test("padStart_文字列の左側から0埋めできる", async (context) => {
 	// Arrange
 	const testData = [
+		// [srouce, expected]
 		["1", "00000001"],
 		["11111111", "11111111"]
 	];
