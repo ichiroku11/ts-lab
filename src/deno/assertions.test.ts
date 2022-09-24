@@ -12,7 +12,8 @@ import {
 	assertMatch,
 	assertNotMatch,
 	assertObjectMatch,
-	assertThrows
+	assertThrows,
+	assertRejects
 } from "testing/asserts.ts";
 
 Deno.test("assert_truthyを確認する", () => {
@@ -118,6 +119,22 @@ Deno.test("assertThrows_エラーが発生したことを検証する", () => {
 	assertThrows(
 		() => {
 			throw new Error("Error!!");
+		},
+		Error,
+		"Error!!");
+});
+
+// assertRejects
+Deno.test("assertRejects_エラーが発生したことを検証する", async () => {
+	await assertRejects(
+		() => {
+			return Promise.reject(new Error("Error!!"));
+			// こっちでもOK
+			/*
+			return new Promise(() => {
+				throw new Error("Error!!");
+			});
+			*/
 		},
 		Error,
 		"Error!!");
