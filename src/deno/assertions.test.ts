@@ -11,7 +11,8 @@ import {
 	assertArrayIncludes,
 	assertMatch,
 	assertNotMatch,
-	assertObjectMatch
+	assertObjectMatch,
+	assertThrows
 } from "testing/asserts.ts";
 
 Deno.test("assert_truthyを確認する", () => {
@@ -112,6 +113,12 @@ Deno.test("assertObjectMatch_actualで指定したオブジェクトがexpected�
 	// assertObjectMatch({ x: 1 }, { x: 0 });
 });
 
-// todo:
 // assertThrows
-// assertThrowsAsync
+Deno.test("assertThrows_エラーが発生したことを検証する", () => {
+	assertThrows(
+		() => {
+			throw new Error("Error!!");
+		},
+		Error,
+		"Error!!");
+});
