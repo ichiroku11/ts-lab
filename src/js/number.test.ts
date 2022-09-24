@@ -5,7 +5,7 @@ import {
 
 // Number.toString
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
-Deno.test("toString_2進数表記の文字列を取得する", async (context) => {
+Deno.test("Number.toString_2進数表記の文字列を取得する", async (context) => {
 	const testData = [
 		// [srouce, expected]
 		[0, "0"],
