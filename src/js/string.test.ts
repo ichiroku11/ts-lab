@@ -4,7 +4,7 @@ import {
 
 // String.padStart
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
-Deno.test("padStart_文字列の左側から0埋めできる", async (context) => {
+Deno.test("String.padStart_文字列の左側から0埋めできる", async (context) => {
 	const testData = [
 		// [srouce, expected]
 		["1", "00000001"],
@@ -16,6 +16,27 @@ Deno.test("padStart_文字列の左側から0埋めできる", async (context) =
 			// Arrange
 			// Act
 			const actual = source.padStart(8, "0");
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
+// String.split
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/split
+Deno.test("String.split_文字列をdotで分割する動きを確認する", async (context) => {
+	const testData: [string, string[]][] = [
+		// [srouce, expected]
+		["", [""]],
+		[".", ["", ""]],
+		["..", ["", "", ""]]
+	];
+	for (const [source, expected] of testData) {
+		await context.step(`"${source}".split(".") => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = source.split(".");
 
 			// Assert
 			assertEquals(actual, expected);
