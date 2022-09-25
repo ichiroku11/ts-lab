@@ -2,7 +2,6 @@ import {
 	assertEquals
 } from "testing/asserts.ts";
 
-
 // Number.toString
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
 Deno.test("Number.toString_2進数表記の文字列を取得する", async (context) => {
