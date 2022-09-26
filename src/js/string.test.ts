@@ -6,7 +6,7 @@ import {
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 Deno.test("String.padStart_文字列の左側から0埋めできる", async (context) => {
 	const testData = [
-		// [srouce, expected]
+		// [source, expected]
 		["1", "00000001"],
 		["11111111", "11111111"]
 	];
@@ -27,7 +27,7 @@ Deno.test("String.padStart_文字列の左側から0埋めできる", async (con
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/split
 Deno.test("String.split_文字列をdotで分割する動きを確認する", async (context) => {
 	const testData: [string, string[]][] = [
-		// [srouce, expected]
+		// [source, expected]
 		["", [""]],
 		[".", ["", ""]],
 		["..", ["", "", ""]]
