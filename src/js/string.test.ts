@@ -2,6 +2,32 @@ import {
 	assertEquals
 } from "testing/asserts.ts";
 
+// String.match
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/match
+Deno.test(`String.match_文字列に含まれている"."の数を数える`, async (context) => {
+	const testData: [string, number | undefined][] = [
+		// [source, expected]
+		["0", undefined],
+		[".", 1],
+		["0.0.", 2],
+		["0.0.0.0", 3],
+	];
+
+	// Arrange
+	const regexp = /\./g;
+
+	for (const [source, expected] of testData) {
+		await context.step(`"${source}".match(${regexp})?.length => ${expected}`, () => {
+			// Arrange
+			// Act
+			const actual = source.match(regexp)?.length;
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
 // String.padStart
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 Deno.test("String.padStart_文字列の左側から0埋めできる", async (context) => {
@@ -25,7 +51,7 @@ Deno.test("String.padStart_文字列の左側から0埋めできる", async (con
 
 // String.split
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/split
-Deno.test("String.split_文字列をdotで分割する動きを確認する", async (context) => {
+Deno.test(`String.split_文字列を"."で分割する動きを確認する`, async (context) => {
 	const testData: [string, string[]][] = [
 		// [source, expected]
 		["", [""]],
@@ -43,4 +69,3 @@ Deno.test("String.split_文字列をdotで分割する動きを確認する", as
 		});
 	}
 });
-
