@@ -30,7 +30,10 @@ Deno.test("IPv4.toBinary_変換できず例外が発生する", async (context) 
 		"",
 		// 「0-9./」以外の文字列が含まれている
 		"abc",
-		"@"
+		"@",
+		//
+		"0.0.0.0.0",
+		"0.0.0.0//0",
 	];
 
 	for (const source of testData) {
