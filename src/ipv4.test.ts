@@ -1,5 +1,7 @@
-
-import { IPv4 } from "./ipv4.ts"
+import {
+	IPv4,
+	IPv4ArgumentError
+} from "./ipv4.ts"
 import {
 	assertEquals,
 	assertThrows,
@@ -37,16 +39,17 @@ Deno.test("IPv4.toBinary_変換できず例外が発生する", async (context) 
 	];
 
 	for (const source of testData) {
-		await context.step(`IPv4.toBinary("${source}") => thrown Error`, () => {
+		await context.step(`IPv4.toBinary("${source}") => thrown IPv4ArgumentError`, () => {
 			// Arrange
 			// Act
 			// Assert
-			assertThrows(
+			const error = assertThrows(
 				() => {
 					IPv4.toBinary(source);
 				},
-				Error,
-				"regexp");
+				IPv4ArgumentError);
+
+			console.log(error.message);
 		});
 	}
 });
