@@ -10,7 +10,7 @@ import {
 Deno.test("IPv4.toBinary_10進数表現を2進数表現に変換できる", async (context) => {
 	const testData = [
 		// [source, expected]
-		["0", "0"],
+		["0", "00000000.00000000.00000000.00000000"],
 		["0./", "0./"]
 	];
 

@@ -1,5 +1,4 @@
 
-
 export class IPv4 {
 	// 許可する文字
 	// ”0-9"、"."、"/"
@@ -10,6 +9,10 @@ export class IPv4 {
 
 	// "/"
 	private static readonly _regexpFindSlash = /\//g;
+
+	private static parseAddress(address: string): [number, number, number, number] {
+		return [0, 0, 0, 0];
+	}
 
 	// 10進数表現を2進数表現に変換する
 	public static toBinary(decimalText: string): string {
@@ -28,6 +31,14 @@ export class IPv4 {
 		const countOfSlash = decimalText.match(this._regexpFindSlash)?.length ?? 0;
 		if (!(countOfSlash <= 1)) {
 			throw new IPv4ArgumentError("There are many slashes.");
+		}
+
+		const [decimalAddress, decimalMask] = decimalText.split("/");
+
+		const [address0, address1, address2, address3] = this.parseAddress(decimalAddress);
+		const binaryAddress = `${address0.toString(2).padStart(8, "0")}.${address1.toString(2).padStart(8, "0")}.${address2.toString(2).padStart(8, "0")}.${address3.toString(2).padStart(8, "0")}`;
+		if (countOfSlash === 0) {
+			return binaryAddress;
 		}
 
 		// todo:
