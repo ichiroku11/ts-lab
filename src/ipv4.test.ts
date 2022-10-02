@@ -11,12 +11,8 @@ import {
 Deno.test("IPv4.toDecimalString_10進数表現を取得できる", async (context) => {
 	const testData: [IPv4, string][] = [
 		// [source, expected]
-		// マスクなし
 		[new IPv4([0, 0, 0, 0]), "0.0.0.0"],
-		[new IPv4([192, 168, 0, 1]), "192.168.0.1"],
-		// マスクあり
-		[new IPv4([0, 0, 0, 0], 32), "0.0.0.0/32"],
-		[new IPv4([192, 168, 0, 1], 24), "192.168.0.1/24"],
+		[new IPv4([192, 168, 0, 1]), "192.168.0.1"]
 	];
 
 	for (const [source, expected] of testData) {

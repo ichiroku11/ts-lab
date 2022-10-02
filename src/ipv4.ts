@@ -17,18 +17,13 @@ export class IPv4 {
 	private static readonly _regexpFindSlash = /\//g;
 
 	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];
-	private readonly _mask?: IPv4AddressMask;
 
-	constructor(address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart], mask?: IPv4AddressMask) {
+	constructor(address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart]) {
 		this._address = address;
-		this._mask = mask;
 	}
 
 	public toDecimalString(): string {
-		const address = this._address.join(".");
-		return this._mask
-			? `${address}/${this._mask}`
-			: address;
+		return this._address.join(".");
 	}
 
 	private static parseAddress(decimalText: string): [number, number, number, number] {
