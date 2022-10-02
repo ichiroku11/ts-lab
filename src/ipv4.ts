@@ -26,6 +26,10 @@ export class IPv4 {
 		return this._address.join(".");
 	}
 
+	public toBinaryString(): string {
+		return this._address.map(part => part.toString(2).padStart(8, "0")).join(".");
+	}
+
 	private static parseAddress(decimalText: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
 	}
