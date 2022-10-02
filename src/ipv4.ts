@@ -2,9 +2,6 @@
 // 0～255
 type IPv4AddressPart = number;
 
-// 0～32
-type IPv4AddressMask = number;
-
 export class IPv4 {
 	// 許可する文字
 	// ”0-9"、"."、"/"
@@ -18,8 +15,9 @@ export class IPv4 {
 
 	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];
 
-	constructor(address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart]) {
-		this._address = address;
+	constructor(address0: IPv4AddressPart, address1: IPv4AddressPart, address2: IPv4AddressPart, address3: IPv4AddressPart) {
+		// todo: 引数チェック
+		this._address = [address0, address1, address2, address3];
 	}
 
 	public toDecimalString(): string {
