@@ -1,4 +1,10 @@
 
+// 0～255
+type IPv4AddressPart = number;
+
+// 0～32
+type IPv4AddressMask = number;
+
 export class IPv4 {
 	// 許可する文字
 	// ”0-9"、"."、"/"
@@ -10,7 +16,22 @@ export class IPv4 {
 	// "/"
 	private static readonly _regexpFindSlash = /\//g;
 
-	private static parseAddress(address: string): [number, number, number, number] {
+	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];
+	private readonly _mask?: IPv4AddressMask;
+
+	constructor(address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart], mask?: IPv4AddressMask) {
+		this._address = address;
+		this._mask = mask;
+	}
+
+	public toDecimalString(): string {
+		const address = this._address.join(".");
+		return this._mask
+			? `${address}/${this._mask}`
+			: address;
+	}
+
+	private static parseAddress(decimalText: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
 	}
 
@@ -61,7 +82,6 @@ export class IPv4 {
 		return decimalText;
 	}
 }
-
 
 export class IPv4ArgumentError extends Error {
 }
