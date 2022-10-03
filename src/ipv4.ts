@@ -59,23 +59,6 @@ export class IPv4 {
 			return new IPv4(address0, address1, address2, address3);
 		}
 
-		// todo:
-		/*
-		// "/"で分割
-		// 分割した結果が3つ以上ならエラー
-		//const [addressText, maskText, ...rest] = decimalText.split("/");
-		const [addressText, maskText, ...rest] = decimalText.split("/");
-		if (rest.length > 0) {
-			throw new Error("");
-		}
-		*/
-
-		// 2つならサブネットマスクあり
-		// 1つならサブネットマスクなし
-		// "."で分割
-		// 分割した結果が5つ以上はエラー
-		// 4つ以下なら空は0とする
-
 		return new IPv4(0, 0, 0, 0);
 	}
 }
