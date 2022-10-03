@@ -48,26 +48,27 @@ Deno.test("IPv4.toBinaryString_2進数表現を取得できる", async (context)
 	}
 });
 
-Deno.test("IPv4.toBinary_10進数表現を2進数表現に変換できる", async (context) => {
+Deno.test("IPv4.fromDecimalString_IPv4に変換できる", async (context) => {
 	const testData = [
 		// [source, expected]
-		["0", "00000000.00000000.00000000.00000000"],
-		["0./", "0./"]
+		["0", "0.0.0.0"],
+		["0./", "0.0.0.0"]
 	];
 
 	for (const [source, expected] of testData) {
 		// todo:
-		await context.step(`IPv4.toBinary("${source}") => "${expected}"`, () => {
+		await context.step(`IPv4.fromDecimalString("${source}") => "${expected}"`, () => {
 			// Arrange
 			// Act
-			const actual = IPv4.toBinary(source);
+			const actual = IPv4.fromDecimalString(source);
+
 			// Assert
-			assertEquals(actual, expected);
+			assertEquals(actual.toDecimalString(), expected);
 		});
 	}
 });
 
-Deno.test("IPv4.toBinary_変換できず例外が発生する", async (context) => {
+Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", async (context) => {
 	const testData = [
 		// source
 		"",
@@ -80,13 +81,13 @@ Deno.test("IPv4.toBinary_変換できず例外が発生する", async (context) 
 	];
 
 	for (const source of testData) {
-		await context.step(`IPv4.toBinary("${source}") => thrown IPv4ArgumentError`, () => {
+		await context.step(`IPv4.fromDecimalString("${source}") => thrown IPv4ArgumentError`, () => {
 			// Arrange
 			// Act
 			// Assert
 			const error = assertThrows(
 				() => {
-					IPv4.toBinary(source);
+					IPv4.fromDecimalString(source);
 				},
 				IPv4ArgumentError);
 

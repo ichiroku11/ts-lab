@@ -28,35 +28,35 @@ export class IPv4 {
 		return this._address.map(part => part.toString(2).padStart(8, "0")).join(".");
 	}
 
-	private static parseAddress(decimalText: string): [number, number, number, number] {
+
+	private static parseAddress(decimal: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
 	}
 
-	// 10進数表現を2進数表現に変換する
-	public static toBinary(decimalText: string): string {
+	// 10進数表現のIPアドレス文字列からIPv4を生成する
+	public static fromDecimalString(decimal: string): IPv4 {
 		// ”0-9"、"."、"/"を許可
-		if (!this._regexpAllowedChar.test(decimalText)) {
+		if (!this._regexpAllowedChar.test(decimal)) {
 			throw new IPv4ArgumentError("Valid characters are numbers, dot and slash.");
 		}
 
 		// "."の数は0～3
-		const countOfDot = decimalText.match(this._regexpFindDot)?.length ?? 0;
+		const countOfDot = decimal.match(this._regexpFindDot)?.length ?? 0;
 		if (!(countOfDot <= 3)) {
 			throw new IPv4ArgumentError("There are many dots.");
 		}
 
 		// "/"の数は0または1
-		const countOfSlash = decimalText.match(this._regexpFindSlash)?.length ?? 0;
+		const countOfSlash = decimal.match(this._regexpFindSlash)?.length ?? 0;
 		if (!(countOfSlash <= 1)) {
 			throw new IPv4ArgumentError("There are many slashes.");
 		}
 
-		const [decimalAddress, decimalMask] = decimalText.split("/");
+		const [address, mask] = decimal.split("/");
 
-		const [address0, address1, address2, address3] = this.parseAddress(decimalAddress);
-		const binaryAddress = `${address0.toString(2).padStart(8, "0")}.${address1.toString(2).padStart(8, "0")}.${address2.toString(2).padStart(8, "0")}.${address3.toString(2).padStart(8, "0")}`;
+		const [address0, address1, address2, address3] = this.parseAddress(address);
 		if (countOfSlash === 0) {
-			return binaryAddress;
+			return new IPv4(address0, address1, address2, address3);
 		}
 
 		// todo:
@@ -76,7 +76,7 @@ export class IPv4 {
 		// 分割した結果が5つ以上はエラー
 		// 4つ以下なら空は0とする
 
-		return decimalText;
+		return new IPv4(0, 0, 0, 0);
 	}
 }
 
