@@ -48,6 +48,32 @@ Deno.test("IPv4.toBinaryString_2進数表現を取得できる", async (context)
 	}
 });
 
+
+Deno.test("IPv4.fromMaskPrefix_IPv4を生成できる", async (context) => {
+	const testData: [number, string][] = [
+		// [source, expected]
+		[0, "0.0.0.0"]
+		/*,
+		[8, "255.0.0.0"],
+		[16, "255.255.0.0"],
+		[24, "255.255.255.0"],
+		[32, "255.255.255.255"]
+		*/
+	];
+
+	for (const [source, expected] of testData) {
+		// todo:
+		await context.step(`IPv4.fromMaskPrefix(${source}) => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = IPv4.fromMaskPrefix(source);
+
+			// Assert
+			assertEquals(actual.toDecimalString(), expected);
+		});
+	}
+});
+
 Deno.test("IPv4.fromDecimalString_IPv4に変換できる", async (context) => {
 	const testData = [
 		// [source, expected]

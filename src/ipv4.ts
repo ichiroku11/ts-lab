@@ -1,6 +1,7 @@
 
 // 0～255
 type IPv4AddressPart = number;
+type IPv4MaskPrefix = number;
 
 export class IPv4 {
 	// 許可する文字
@@ -15,6 +16,12 @@ export class IPv4 {
 
 	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];
 
+	// サブネットマスクのプレフィックスからIPv4を生成する
+	public static fromMaskPrefix(prefix: number): IPv4 {
+		// todo:
+		return new IPv4(0, 0, 0, 0);
+	}
+
 	constructor(address0: IPv4AddressPart, address1: IPv4AddressPart, address2: IPv4AddressPart, address3: IPv4AddressPart) {
 		// todo: 引数チェック
 		this._address = [address0, address1, address2, address3];
@@ -27,7 +34,6 @@ export class IPv4 {
 	public toBinaryString(): string {
 		return this._address.map(part => part.toString(2).padStart(8, "0")).join(".");
 	}
-
 
 	private static parseAddress(decimal: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
@@ -54,8 +60,9 @@ export class IPv4 {
 
 		const [address, mask] = decimal.split("/");
 
+		// todo:
 		const [address0, address1, address2, address3] = this.parseAddress(address);
-		if (countOfSlash === 0) {
+		if (mask === undefined) {
 			return new IPv4(address0, address1, address2, address3);
 		}
 
