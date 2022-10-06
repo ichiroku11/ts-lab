@@ -7,48 +7,6 @@ import {
 	assertThrows,
 } from "testing/asserts.ts";
 
-
-Deno.test("IPv4.toDecimalString_10進数表現を取得できる", async (context) => {
-	const testData: [IPv4, string][] = [
-		// [source, expected]
-		[new IPv4(0, 0, 0, 0), "0.0.0.0"],
-		[new IPv4(192, 168, 0, 1), "192.168.0.1"],
-		[new IPv4(255, 255, 255, 255), "255.255.255.255"]
-	];
-
-	for (const [source, expected] of testData) {
-		await context.step(`IPv4.toDecimalString: "${source.toDecimalString()}" => "${expected}"`, () => {
-			// Arrange
-			// Act
-			const actual = source.toDecimalString();
-
-			// Assert
-			assertEquals(actual, expected);
-		});
-	}
-});
-
-Deno.test("IPv4.toBinaryString_2進数表現を取得できる", async (context) => {
-	const testData: [IPv4, string][] = [
-		// [source, expected]
-		[new IPv4(0, 0, 0, 0), "00000000.00000000.00000000.00000000"],
-		[new IPv4(192, 168, 0, 1), "11000000.10101000.00000000.00000001"],
-		[new IPv4(255, 255, 255, 255), "11111111.11111111.11111111.11111111"]
-	];
-
-	for (const [source, expected] of testData) {
-		await context.step(`IPv4.toBinaryString: "${source.toDecimalString()}" => "${expected}"`, () => {
-			// Arrange
-			// Act
-			const actual = source.toBinaryString();
-
-			// Assert
-			assertEquals(actual, expected);
-		});
-	}
-});
-
-
 Deno.test("IPv4.fromMaskPrefix_IPv4を生成できる", async (context) => {
 	const testData: [number, string][] = [
 		// [source, expected]
@@ -118,6 +76,46 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", 
 				IPv4ArgumentError);
 
 			console.log(error.message);
+		});
+	}
+});
+
+Deno.test("IPv4.toBinaryString_2進数表現を取得できる", async (context) => {
+	const testData: [IPv4, string][] = [
+		// [source, expected]
+		[new IPv4(0, 0, 0, 0), "00000000.00000000.00000000.00000000"],
+		[new IPv4(192, 168, 0, 1), "11000000.10101000.00000000.00000001"],
+		[new IPv4(255, 255, 255, 255), "11111111.11111111.11111111.11111111"]
+	];
+
+	for (const [source, expected] of testData) {
+		await context.step(`IPv4.toBinaryString: "${source.toDecimalString()}" => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = source.toBinaryString();
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
+Deno.test("IPv4.toDecimalString_10進数表現を取得できる", async (context) => {
+	const testData: [IPv4, string][] = [
+		// [source, expected]
+		[new IPv4(0, 0, 0, 0), "0.0.0.0"],
+		[new IPv4(192, 168, 0, 1), "192.168.0.1"],
+		[new IPv4(255, 255, 255, 255), "255.255.255.255"]
+	];
+
+	for (const [source, expected] of testData) {
+		await context.step(`IPv4.toDecimalString: "${source.toDecimalString()}" => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = source.toDecimalString();
+
+			// Assert
+			assertEquals(actual, expected);
 		});
 	}
 });

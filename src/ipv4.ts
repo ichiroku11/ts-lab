@@ -16,25 +16,7 @@ export class IPv4 {
 
 	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];
 
-	// サブネットマスクのプレフィックスからIPv4を生成する
-	public static fromMaskPrefix(prefix: number): IPv4 {
-		// todo:
-		return new IPv4(0, 0, 0, 0);
-	}
-
-	constructor(address0: IPv4AddressPart, address1: IPv4AddressPart, address2: IPv4AddressPart, address3: IPv4AddressPart) {
-		// todo: 引数チェック
-		this._address = [address0, address1, address2, address3];
-	}
-
-	public toDecimalString(): string {
-		return this._address.join(".");
-	}
-
-	public toBinaryString(): string {
-		return this._address.map(part => part.toString(2).padStart(8, "0")).join(".");
-	}
-
+	// todo:
 	private static parseAddress(decimal: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
 	}
@@ -67,6 +49,25 @@ export class IPv4 {
 		}
 
 		return new IPv4(0, 0, 0, 0);
+	}
+
+	// サブネットマスクのプレフィックスからIPv4を生成する
+	public static fromMaskPrefix(prefix: number): IPv4 {
+		// todo:
+		return new IPv4(0, 0, 0, 0);
+	}
+
+	constructor(address0: IPv4AddressPart, address1: IPv4AddressPart, address2: IPv4AddressPart, address3: IPv4AddressPart) {
+		// todo: 引数チェック
+		this._address = [address0, address1, address2, address3];
+	}
+
+	public toBinaryString(): string {
+		return this._address.map(part => part.toString(2).padStart(8, "0")).join(".");
+	}
+
+	public toDecimalString(): string {
+		return this._address.join(".");
 	}
 }
 
