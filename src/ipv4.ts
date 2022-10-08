@@ -52,9 +52,21 @@ export class IPv4 {
 	}
 
 	// サブネットマスクのプレフィックスからIPv4を生成する
-	public static fromMaskPrefix(prefix: number): IPv4 {
+	public static fromMaskPrefix(prefix: IPv4MaskPrefix): IPv4 {
 		// todo:
-		return new IPv4(0, 0, 0, 0);
+		if (prefix < 0 || prefix > 32) {
+			throw new Error("");
+		}
+
+		// サブネットマスクの2進数文字列を生成してから、
+		// 8文字ずつ取り出し、2進数として数値を変換する
+		const binary = "1".repeat(prefix).padEnd(32, "0");
+
+		return new IPv4(
+			parseInt(binary.slice(0, 8), 2),
+			parseInt(binary.slice(8, 16), 2),
+			parseInt(binary.slice(16, 24), 2),
+			parseInt(binary.slice(24, 32), 2));
 	}
 
 	constructor(address0: IPv4AddressPart, address1: IPv4AddressPart, address2: IPv4AddressPart, address3: IPv4AddressPart) {

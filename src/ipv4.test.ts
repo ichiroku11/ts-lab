@@ -10,13 +10,11 @@ import {
 Deno.test("IPv4.fromMaskPrefix_IPv4を生成できる", async (context) => {
 	const testData: [number, string][] = [
 		// [source, expected]
-		[0, "0.0.0.0"]
-		/*,
+		[0, "0.0.0.0"],
 		[8, "255.0.0.0"],
 		[16, "255.255.0.0"],
 		[24, "255.255.255.0"],
 		[32, "255.255.255.255"]
-		*/
 	];
 
 	for (const [source, expected] of testData) {
