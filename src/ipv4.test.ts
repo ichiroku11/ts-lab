@@ -30,6 +30,31 @@ Deno.test("IPv4.fromMaskPrefix_IPv4を生成できる", async (context) => {
 	}
 });
 
+Deno.test("IPv4.fromMaskPrefix_例外が発生する", async (context) => {
+	const testData = [
+		// source
+		-1,
+		33
+	];
+
+	for (const source of testData) {
+		// todo:
+		await context.step(`IPv4.fromMaskPrefix(${source}) => IPv4ArgumentError`, () => {
+			// Arrange
+			// Act
+			// Assert
+			const error = assertThrows(
+				() => {
+					IPv4.fromMaskPrefix(source);
+				},
+				IPv4ArgumentError);
+
+			console.log(error.message);
+		});
+	}
+});
+
+
 Deno.test("IPv4.fromDecimalString_IPv4に変換できる", async (context) => {
 	const testData = [
 		// [source, expected]
@@ -63,7 +88,7 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", 
 	];
 
 	for (const source of testData) {
-		await context.step(`IPv4.fromDecimalString("${source}") => thrown IPv4ArgumentError`, () => {
+		await context.step(`IPv4.fromDecimalString("${source}") => IPv4ArgumentError`, () => {
 			// Arrange
 			// Act
 			// Assert

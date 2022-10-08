@@ -53,9 +53,8 @@ export class IPv4 {
 
 	// サブネットマスクのプレフィックスからIPv4を生成する
 	public static fromMaskPrefix(prefix: IPv4MaskPrefix): IPv4 {
-		// todo:
 		if (prefix < 0 || prefix > 32) {
-			throw new Error("");
+			throw new IPv4ArgumentError("Argument prefix is out of range.");
 		}
 
 		// サブネットマスクの2進数文字列を生成してから、
