@@ -49,6 +49,26 @@ Deno.test("String.padStart_文字列の左側から0埋めできる", async (con
 	}
 });
 
+// String.repeat
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+Deno.test("String.repeat_文字列を指定した数だけ繰り返した文字列を取得できる", async (context) => {
+	const testData: [string, number, string][] = [
+		// [source, count, expected]
+		["1", 0, ""],
+		["1", 8, "11111111"]
+	];
+	for (const [source, count, expected] of testData) {
+		await context.step(`"${source}".repeat(${count}) => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = source.repeat(count);
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
 // String.split
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/split
 Deno.test(`String.split_文字列を"."で分割する動きを確認する`, async (context) => {
