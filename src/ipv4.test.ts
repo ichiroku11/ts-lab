@@ -133,9 +133,10 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", 
 	}
 });
 
-Deno.test("and_ビット論理積を求めることができる", async(context) => {
+Deno.test("and_引数で指定したオブジェクトとのビット論理積を求めることができる", async(context) => {
 	const testData: [IPv4, IPv4, string][] = [
-		[new IPv4(1, 2, 3, 4), new IPv4(255, 255, 255, 255), "1.2.3.4"]
+		[new IPv4(1, 2, 3, 4), new IPv4(255, 255, 255, 255), "1.2.3.4"],
+		[new IPv4(1, 2, 3, 4), new IPv4(255, 255, 0, 0), "1.2.0.0"],
 	];
 
 	for (const [source, other, expected] of testData) {
