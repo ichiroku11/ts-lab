@@ -69,6 +69,32 @@ Deno.test("String.repeat_文字列を指定した数だけ繰り返した文字�
 	}
 });
 
+// String.slice
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/slice
+Deno.test(`String.slice_部分文字列を取り出す`, async (context) => {
+	const source = "0123456789";
+
+	const testData: [number, number | undefined, string][] = [
+		// [start, endex, pected]
+		[0, 1, "0"],
+		[1, 3, "12"],
+		[1, 4, "123"],
+		[2, 4, "23"],
+		[5, undefined, "56789"],
+	];
+
+	for (const [start, end, expected] of testData) {
+		await context.step(`"${source}".slice(${start}, ${end}) => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = source.slice(start, end);
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
 // String.split
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/split
 Deno.test(`String.split_文字列を"."で分割する動きを確認する`, async (context) => {
