@@ -133,6 +133,23 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", 
 	}
 });
 
+Deno.test("and_ビット論理積を求めることができる", async(context) => {
+	const testData: [IPv4, IPv4, string][] = [
+		[new IPv4(1, 2, 3, 4), new IPv4(255, 255, 255, 255), "1.2.3.4"]
+	];
+
+	for (const [source, other, expected] of testData) {
+		await context.step(`"${source.toDecimalString()}".bitwiseAnd("${other.toDecimalString()}") => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = source.and(other);
+
+			// Assert
+			assertEquals(actual.toDecimalString(), expected);
+		});
+	}
+});
+
 Deno.test("IPv4.toBinaryString_2進数表現を取得できる", async (context) => {
 	const testData: [IPv4, string][] = [
 		// [source, expected]

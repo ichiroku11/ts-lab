@@ -85,6 +85,14 @@ export class IPv4 {
 		this._address = [address0, address1, address2, address3];
 	}
 
+	public and(other: IPv4): IPv4 {
+		return new IPv4(
+			this._address[0] & other._address[0],
+			this._address[1] & other._address[1],
+			this._address[2] & other._address[2],
+			this._address[3] & other._address[3]);
+	}
+
 	public toBinaryString(): string {
 		return this._address.map(part => part.toString(2).padStart(8, "0")).join(".");
 	}
