@@ -7,6 +7,36 @@ import {
 	assertThrows,
 } from "testing/asserts.ts";
 
+Deno.test("IPv4.constructor_例外が発生する", async (context) => {
+	const testData = [
+		// source
+		[-1, 0, 0, 0],
+		[256, 0, 0, 0],
+		[0, -1, 0, 0],
+		[0, 256, 0, 0],
+		[0, 0, -1, 0],
+		[0, 0, 256, 0],
+		[0, 0, 0, -1],
+		[0, 0, 0, 256]
+	];
+
+	for (const source of testData) {
+		// todo:
+		await context.step(`new IPv4(${source}) => IPv4ArgumentError`, () => {
+			// Arrange
+			// Act
+			// Assert
+			const error = assertThrows(
+				() => {
+					new IPv4(source[0], source[1], source[2], source[3]);
+				},
+				IPv4ArgumentError);
+
+			console.log(error.message);
+		});
+	}
+});
+
 Deno.test("IPv4.fromMaskPrefix_IPv4を生成できる", async (context) => {
 	const testData: [number, string][] = [
 		// [source, expected]
