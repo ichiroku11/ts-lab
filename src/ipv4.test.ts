@@ -151,6 +151,27 @@ Deno.test("and_引数で指定したオブジェクトとのビット論理積�
 	}
 });
 
+Deno.test("equals_引数で指定したオブジェクトと等しいことを判定できる", async(context) => {
+	const testData: [IPv4, IPv4, boolean][] = [
+		[new IPv4(1, 2, 3, 4), new IPv4(1, 2, 3, 4), true],
+		[new IPv4(1, 1, 1, 1), new IPv4(1, 1, 1, 0), false],
+		[new IPv4(1, 1, 1, 1), new IPv4(1, 1, 0, 1), false],
+		[new IPv4(1, 1, 1, 1), new IPv4(1, 0, 1, 1), false],
+		[new IPv4(1, 1, 1, 1), new IPv4(0, 1, 1, 1), false]
+	];
+
+	for (const [source, other, expected] of testData) {
+		await context.step(`"${source.toDecimalString()}".equals("${other.toDecimalString()}") => ${expected}`, () => {
+			// Arrange
+			// Act
+			const actual = source.equals(other);
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
 Deno.test("IPv4.toBinaryString_2進数表現を取得できる", async (context) => {
 	const testData: [IPv4, string][] = [
 		// [source, expected]
