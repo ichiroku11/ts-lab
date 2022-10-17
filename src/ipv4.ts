@@ -14,6 +14,11 @@ export class IPv4 {
 	// "/"
 	private static readonly _regexpFindSlash = /\//g;
 
+
+	private static isAddressPart(value: number): boolean {
+		return value >= 0 && value <= 255;
+	}
+
 	// todo:
 	private static parseAddress(decimal: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
@@ -39,6 +44,9 @@ export class IPv4 {
 		}
 
 		const [address, mask] = decimal.split("/");
+
+		// todo:
+		//const [address0, address1, address2, address3] = decimal.split(".");
 
 		// todo:
 		const [address0, address1, address2, address3] = this.parseAddress(address);
@@ -69,16 +77,16 @@ export class IPv4 {
 	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];
 
 	constructor(address0: IPv4AddressPart, address1: IPv4AddressPart, address2: IPv4AddressPart, address3: IPv4AddressPart) {
-		if (address0 < 0 || address0 > 255) {
+		if (!IPv4.isAddressPart(address0)) {
 			throw new IPv4ArgumentError("Argument address0 is out of range.");
 		}
-		if (address1 < 0 || address1 > 255) {
+		if (!IPv4.isAddressPart(address1)) {
 			throw new IPv4ArgumentError("Argument address1 is out of range.");
 		}
-		if (address2 < 0 || address2 > 255) {
+		if (!IPv4.isAddressPart(address2)) {
 			throw new IPv4ArgumentError("Argument address2 is out of range.");
 		}
-		if (address3 < 0 || address3 > 255) {
+		if (!IPv4.isAddressPart(address3)) {
 			throw new IPv4ArgumentError("Argument address3 is out of range.");
 		}
 

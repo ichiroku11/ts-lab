@@ -21,7 +21,6 @@ Deno.test("IPv4.constructor_例外が発生する", async (context) => {
 	];
 
 	for (const source of testData) {
-		// todo:
 		await context.step(`new IPv4(${source}) => IPv4ArgumentError`, () => {
 			// Arrange
 			// Act
@@ -48,7 +47,6 @@ Deno.test("IPv4.fromMaskPrefix_IPv4を生成できる", async (context) => {
 	];
 
 	for (const [source, expected] of testData) {
-		// todo:
 		await context.step(`IPv4.fromMaskPrefix(${source}) => "${expected}"`, () => {
 			// Arrange
 			// Act
@@ -68,7 +66,6 @@ Deno.test("IPv4.fromMaskPrefix_例外が発生する", async (context) => {
 	];
 
 	for (const source of testData) {
-		// todo:
 		await context.step(`IPv4.fromMaskPrefix(${source}) => IPv4ArgumentError`, () => {
 			// Arrange
 			// Act
