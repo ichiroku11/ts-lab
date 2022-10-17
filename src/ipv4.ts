@@ -19,6 +19,10 @@ export class IPv4 {
 		return value >= 0 && value <= 255;
 	}
 
+	private static isMaskPrefix(value: number): boolean {
+		return value >= 0 && value <= 32;
+	}
+
 	// todo:
 	private static parseAddress(decimal: string): [number, number, number, number] {
 		return [0, 0, 0, 0];
@@ -59,7 +63,7 @@ export class IPv4 {
 
 	// サブネットマスクのプレフィックスからIPv4を生成する
 	public static fromMaskPrefix(prefix: IPv4MaskPrefix): IPv4 {
-		if (prefix < 0 || prefix > 32) {
+		if (!IPv4.isMaskPrefix(prefix)) {
 			throw new IPv4ArgumentError("Argument prefix is out of range.");
 		}
 
