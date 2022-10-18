@@ -14,9 +14,32 @@ export class IPv4 {
 	// "/"
 	private static readonly _regexpFindSlash = /\//g;
 
-	// todo: parseDecimalString
+	private static isAddressPart(value: number): boolean {
+		return value >= 0 && value <= 255;
+	}
+
+	private static isMaskPrefix(value: number): boolean {
+		return value >= 0 && value <= 32;
+	}
+
+	private static parseAddressPart(value: string): IPv4AddressPart {
+		// 0～255に変換できなければ0とする
+		const result = parseInt(value, 10);
+		return this.isAddressPart(result)
+			? result
+			: 0;
+	}
+
+	private static parseMaskPrefix(value: string): IPv4MaskPrefix {
+		// 0～32に変換できなければ0とする
+		const result = parseInt(value, 10);
+		return this.isMaskPrefix(result)
+			? result
+			: 0;
+	}
+
 	// 10進数表現のIPアドレス文字列からIPv4を生成する
-	public static fromDecimalString(decimal: string): IPv4 {
+	public static parseDecimalString(decimal: string): IPv4 {
 		// ”0-9"、"."、"/"を許可
 		if (!this._regexpAllowedChar.test(decimal)) {
 			throw new IPv4ArgumentError("Valid characters are numbers, dot and slash.");
@@ -65,30 +88,6 @@ export class IPv4 {
 			parseInt(binary.slice(8, 16), 2),
 			parseInt(binary.slice(16, 24), 2),
 			parseInt(binary.slice(24, 32), 2));
-	}
-
-	private static isAddressPart(value: number): boolean {
-		return value >= 0 && value <= 255;
-	}
-
-	private static isMaskPrefix(value: number): boolean {
-		return value >= 0 && value <= 32;
-	}
-
-	private static parseAddressPart(value: string): IPv4AddressPart {
-		// 0～255に変換できなければ0とする
-		const result = parseInt(value, 10);
-		return this.isAddressPart(result)
-			? result
-			: 0;
-	}
-
-	private static parseMaskPrefix(value: string): IPv4MaskPrefix {
-		// 0～32に変換できなければ0とする
-		const result = parseInt(value, 10);
-		return this.isMaskPrefix(result)
-			? result
-			: 0;
 	}
 
 	private readonly _address: [IPv4AddressPart, IPv4AddressPart, IPv4AddressPart, IPv4AddressPart];

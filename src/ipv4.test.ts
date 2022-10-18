@@ -82,7 +82,7 @@ Deno.test("IPv4.fromMaskPrefix_例外が発生する", async (context) => {
 });
 
 
-Deno.test("IPv4.fromDecimalString_IPv4に変換できる", async (context) => {
+Deno.test("IPv4.parseDecimalString_IPv4に変換できる", async (context) => {
 	const testData = [
 		// [source, expected]
 		["0", "0.0.0.0"],
@@ -91,10 +91,10 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できる", async (context) => {
 
 	for (const [source, expected] of testData) {
 		// todo:
-		await context.step(`IPv4.fromDecimalString("${source}") => "${expected}"`, () => {
+		await context.step(`IPv4.parseDecimalString("${source}") => "${expected}"`, () => {
 			// Arrange
 			// Act
-			const actual = IPv4.fromDecimalString(source);
+			const actual = IPv4.parseDecimalString(source);
 
 			// Assert
 			assertEquals(actual.toDecimalString(), expected);
@@ -102,7 +102,7 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できる", async (context) => {
 	}
 });
 
-Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", async (context) => {
+Deno.test("IPv4.parseDecimalString_IPv4に変換できず例外が発生する", async (context) => {
 	const testData = [
 		// source
 		"",
@@ -115,13 +115,13 @@ Deno.test("IPv4.fromDecimalString_IPv4に変換できず例外が発生する", 
 	];
 
 	for (const source of testData) {
-		await context.step(`IPv4.fromDecimalString("${source}") => IPv4ArgumentError`, () => {
+		await context.step(`IPv4.parseDecimalString("${source}") => IPv4ArgumentError`, () => {
 			// Arrange
 			// Act
 			// Assert
 			const error = assertThrows(
 				() => {
-					IPv4.fromDecimalString(source);
+					IPv4.parseDecimalString(source);
 				},
 				IPv4ArgumentError);
 
