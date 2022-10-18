@@ -86,7 +86,9 @@ Deno.test("IPv4.parseDecimalString_IPv4に変換できる", async (context) => {
 	const testData: [string, IPv4][] = [
 		// [source, expected]
 		["0", new IPv4(0, 0, 0, 0)],
-		["0./", new IPv4(0, 0, 0, 0)]
+		["0./", new IPv4(0, 0, 0, 0)],
+		["192.168.0.1", new IPv4(192, 168, 0, 1)],
+		["192.168.0.1/24", new IPv4(192, 168, 0, 0)]
 	];
 
 	for (const [source, expected] of testData) {
