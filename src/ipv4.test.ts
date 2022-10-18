@@ -83,21 +83,21 @@ Deno.test("IPv4.fromMaskPrefix_例外が発生する", async (context) => {
 
 
 Deno.test("IPv4.parseDecimalString_IPv4に変換できる", async (context) => {
-	const testData = [
+	const testData: [string, IPv4][] = [
 		// [source, expected]
-		["0", "0.0.0.0"],
-		["0./", "0.0.0.0"]
+		["0", new IPv4(0, 0, 0, 0)],
+		["0./", new IPv4(0, 0, 0, 0)]
 	];
 
 	for (const [source, expected] of testData) {
 		// todo:
-		await context.step(`IPv4.parseDecimalString("${source}") => "${expected}"`, () => {
+		await context.step(`IPv4.parseDecimalString("${source}") => "${expected.toDecimalString()}"`, () => {
 			// Arrange
 			// Act
 			const actual = IPv4.parseDecimalString(source);
 
 			// Assert
-			assertEquals(actual.toDecimalString(), expected);
+			assertEquals(actual, expected);
 		});
 	}
 });
