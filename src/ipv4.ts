@@ -30,12 +30,26 @@ export class IPv4 {
 			: 0;
 	}
 
+	private static parseAddressAsIPv4(value: string): IPv4 {
+		const [address0, address1, address2, address3] = value.split(".");
+		return new IPv4(
+			IPv4.parseAddressPart(address0),
+			IPv4.parseAddressPart(address1),
+			IPv4.parseAddressPart(address2),
+			IPv4.parseAddressPart(address3));
+	}
+
 	private static parseMaskPrefix(value: string): IPv4MaskPrefix {
 		// 0～32に変換できなければ0とする
 		const result = parseInt(value, 10);
 		return this.isMaskPrefix(result)
 			? result
 			: 0;
+	}
+
+	private static parseMaskPrefixAsIPv4(value: string): IPv4 {
+		const mask = IPv4.parseMaskPrefix(value);
+		return IPv4.fromMaskPrefix(mask);
 	}
 
 	// 10進数表現のIPアドレス文字列からIPv4を生成する
@@ -58,19 +72,13 @@ export class IPv4 {
 		}
 
 		const [address, mask] = decimal.split("/");
-		const [address0, address1, address2, address3] = address.split(".");
 
-		const result = new IPv4(
-			IPv4.parseAddressPart(address0),
-			IPv4.parseAddressPart(address1),
-			IPv4.parseAddressPart(address2),
-			IPv4.parseAddressPart(address3));
-
+		const result = IPv4.parseAddressAsIPv4(address);
 		if (mask === undefined) {
 			return result;
 		}
 
-		return result.and(IPv4.fromMaskPrefix(IPv4.parseMaskPrefix(mask)));
+		return result.and(IPv4.parseMaskPrefixAsIPv4(mask));
 	}
 
 	// サブネットマスクのプレフィックスからIPv4を生成する
