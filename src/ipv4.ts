@@ -22,33 +22,33 @@ export class IPv4 {
 		return value >= 0 && value <= 32;
 	}
 
-	private static parseAddressPart(value: string): IPv4AddressPart {
-		// 0～255に変換できなければ0とする
-		const result = parseInt(value, 10);
-		return this.isAddressPart(result)
-			? result
-			: 0;
-	}
-
-	private static parseAddressAsIPv4(value: string): IPv4 {
+	private static parseAddress(value: string): IPv4 {
+		const parse = (value: string): IPv4AddressPart => {
+			// 0～255に変換できなければ0とする
+			const result = parseInt(value, 10);
+			return this.isAddressPart(result)
+				? result
+				: 0;
+		};
 		const [address0, address1, address2, address3] = value.split(".");
+
 		return new IPv4(
-			IPv4.parseAddressPart(address0),
-			IPv4.parseAddressPart(address1),
-			IPv4.parseAddressPart(address2),
-			IPv4.parseAddressPart(address3));
+			parse(address0),
+			parse(address1),
+			parse(address2),
+			parse(address3));
 	}
 
-	private static parseMaskPrefix(value: string): IPv4MaskPrefix {
-		// 0～32に変換できなければ0とする
-		const result = parseInt(value, 10);
-		return this.isMaskPrefix(result)
-			? result
-			: 0;
-	}
+	private static parseMaskPrefix(value: string): IPv4 {
+		const parse = (value: string): IPv4MaskPrefix => {
+			// 0～32に変換できなければ0とする
+			const result = parseInt(value, 10);
+			return this.isMaskPrefix(result)
+				? result
+				: 0;
+		}
+		const mask = parse(value);
 
-	private static parseMaskPrefixAsIPv4(value: string): IPv4 {
-		const mask = IPv4.parseMaskPrefix(value);
 		return IPv4.fromMaskPrefix(mask);
 	}
 
@@ -73,12 +73,13 @@ export class IPv4 {
 
 		const [address, mask] = decimal.split("/");
 
-		const result = IPv4.parseAddressAsIPv4(address);
+		const result = IPv4.parseAddress(address);
 		if (mask === undefined) {
 			return result;
 		}
 
-		return result.and(IPv4.parseMaskPrefixAsIPv4(mask));
+		// サブネットマッスクを考慮する
+		return result.and(IPv4.parseMaskPrefix(mask));
 	}
 
 	// サブネットマスクのプレフィックスからIPv4を生成する
