@@ -1,5 +1,6 @@
 import {
-	assertEquals
+	assertEquals,
+	assertRejects
 } from "testing/asserts.ts";
 
 // Promise.resolve
@@ -13,4 +14,19 @@ Deno.test("Promise.resolve_動きを確認する", async () => {
 
 	// Assert
 	assertEquals(1, actual);
+});
+
+// Promise.reject
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject
+Deno.test("Promise.reject_動きを確認する", async () => {
+	// assertRejectsを使うと、Promiseから例外が発生することを確認できる
+	// https://deno.land/manual@v1.26.2/testing/assertions#throws
+	// Arrange
+	// Act
+	// Assert
+	await assertRejects(
+		() => Promise.reject(new Error("error!")),
+		Error,
+		"error!"
+	);
 });
