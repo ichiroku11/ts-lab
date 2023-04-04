@@ -1,6 +1,18 @@
 import {
+	assert,
 	assertEquals
 } from "testing/asserts.ts";
+
+// Number
+// コンストラクターを関数として呼び出して文字列を数値に変換する
+Deno.test("Number_数字に変換できない場合はNaNになる", () => {
+	// Arrange
+	// Act
+	const result = Number("abc");
+
+	// Assert
+	assert(Number.isNaN(result));
+});
 
 // Number.toString
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
