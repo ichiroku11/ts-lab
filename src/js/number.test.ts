@@ -4,8 +4,28 @@ import {
 } from "testing/asserts.ts";
 
 // Number
+// コンストラクターを関数として呼び出してbooleanを数値に変換する
+Deno.test("Number_booleanを数値に変換する", async (context) => {
+	const testData: [boolean, number][] = [
+		// [source, expected]
+		[true, 1],
+		[false, 0]
+	];
+	for (const [source, expected] of testData) {
+		await context.step(`Number(${source}) => ${expected}`, () => {
+			// Arrange
+			// Act
+			const actual = Number(source);
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
+
+// Number
 // コンストラクターを関数として呼び出して文字列を数値に変換する
-Deno.test("Number_数字に変換できない場合はNaNになる", () => {
+Deno.test("Number_引数を数字に変換できない場合はNaNになる", () => {
 	// Arrange
 	// Act
 	const result = Number("abc");
