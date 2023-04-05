@@ -34,6 +34,26 @@ Deno.test("Number_引数を数字に変換できない場合はNaNになる", ()
 	assert(Number.isNaN(result));
 });
 
+// Number
+Deno.test("Number_nullは0になる", () => {
+	// Arrange
+	// Act
+	const result = Number(null);
+
+	// Assert
+	assertEquals(result, 0);
+});
+
+// Number
+Deno.test("Number_undefinedはNaNになる", () => {
+	// Arrange
+	// Act
+	const result = Number(undefined);
+
+	// Assert
+	assert(Number.isNaN(result));
+});
+
 // Number.toString
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
 Deno.test("Number.toString_2進数表記の文字列を取得する", async (context) => {
