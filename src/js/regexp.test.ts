@@ -14,7 +14,6 @@ Deno.test(`RegExp.test_数字と"."と"/"にマッチする文字列を確認す
 		["a", false]
 	];
 
-	// Arrange
 	const regexp = /[0-9\.\/]/;
 
 	for (const [source, expected] of testData) {
