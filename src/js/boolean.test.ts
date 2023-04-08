@@ -10,11 +10,17 @@ Deno.test("Boolean_booleanに変換する", async (context) => {
 		// number
 		// 0とNaN以外はtrue
 		[1, true],
+		[-1, true],
 		[0, false],
 		[NaN, false],
 
-		// todo:
 		// bigint
+		// 0n以外はtrue
+		[1n, true],
+		[-1n, true],
+		[0n, false],
+
+		// todo:
 		// string
 		// null
 		// undefined
