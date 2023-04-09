@@ -1,10 +1,12 @@
 import {
+	assert,
 	assertEquals,
 	assertFalse
 } from "testing/asserts.ts";
 
 // Boolean
 // コンストラクターを関数として呼び出してBooleanに変換する
+// number/bigint
 Deno.test("Boolean_numberとbigintをbooleanに変換する", async (context) => {
 	const testData: [number | bigint, boolean][] = [
 		// [source, expected]
@@ -33,6 +35,7 @@ Deno.test("Boolean_numberとbigintをbooleanに変換する", async (context) =>
 	}
 });
 
+// string
 Deno.test("Boolean_stringをbooleanに変換する", async (context) => {
 	const testData: [string, boolean][] = [
 		// [source, expected]
@@ -53,6 +56,7 @@ Deno.test("Boolean_stringをbooleanに変換する", async (context) => {
 	}
 });
 
+// null
 Deno.test("Boolean_nullをbooleanに変換するとfalse", () => {
 	// Arrange
 	// Act
@@ -62,6 +66,7 @@ Deno.test("Boolean_nullをbooleanに変換するとfalse", () => {
 	assertFalse(result);
 });
 
+// undefined
 Deno.test("Boolean_undefinedをbooleanに変換するとfalse", () => {
 	// Arrange
 	// Act
@@ -71,7 +76,12 @@ Deno.test("Boolean_undefinedをbooleanに変換するとfalse", () => {
 	assertFalse(result);
 });
 
-/*
-// todo:
 // object
-*/
+Deno.test("Boolean_objectをbooleanに変換するとtrue", () => {
+	// Arrange
+	// Act
+	const result = Boolean({});
+
+	// Assert
+	assert(result);
+});
