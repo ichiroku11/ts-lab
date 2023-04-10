@@ -1,6 +1,7 @@
 import {
 	assert,
-	assertEquals
+	assertEquals,
+	assertFalse
 } from "testing/asserts.ts";
 
 // Number
@@ -73,4 +74,19 @@ Deno.test("Number.toString_2進数表記の文字列を取得する", async (con
 			assertEquals(actual, expected);
 		});
 	}
+});
+
+Deno.test("NaN_何かと比較すると常にfalseを返す", () => {
+	// Arrange
+	// Act
+	// Assert
+
+	// deno-lint-ignore use-isnan
+	assertFalse(0 > NaN);
+
+	// deno-lint-ignore use-isnan
+	assertFalse(0 <= NaN);
+
+	// コンパイルエラーになるので省略
+	//assertFalse(value === NaN);
 });
