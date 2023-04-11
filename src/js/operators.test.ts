@@ -13,3 +13,24 @@ Deno.test("DestructuringAssignment_残余要素に代入する要素がない場
 	assertEquals(value, 1);
 	assertEquals(rest, []);
 });
+
+// 論理積
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_AND
+// x && y
+// xを真偽値に変換した結果がfalseならばxを返し、trueならばyを返す
+Deno.test("LogicalAnd_真偽値以外も扱える1", () => {
+	// Arrange
+	// Act
+	const actual = 1 && 0;
+
+	// Assert
+	assertEquals(actual, 0);
+});
+Deno.test("LogicalAnd_真偽値以外も扱える2", () => {
+	// Arrange
+	// Act
+	const actual = "" && "a";
+
+	// Assert
+	assertEquals(actual, "");
+});
