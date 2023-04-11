@@ -34,3 +34,24 @@ Deno.test("LogicalAnd_真偽値以外も扱える2", () => {
 	// Assert
 	assertEquals(actual, "");
 });
+
+// 論理和
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_OR
+// x || y
+// xを真偽値に変換した結果がtrueならばxを返し、falseならばyを返す
+Deno.test("LogicalOr_真偽値以外も扱える1", () => {
+	// Arrange
+	// Act
+	const actual = 1 || 0;
+
+	// Assert
+	assertEquals(actual, 1);
+});
+Deno.test("LogicalOr_真偽値以外も扱える2", () => {
+	// Arrange
+	// Act
+	const actual = "" || "a";
+
+	// Assert
+	assertEquals(actual, "a");
+});
