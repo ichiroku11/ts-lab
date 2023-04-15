@@ -43,6 +43,15 @@ Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
 
 	// string
 	assertEquals("x", "x");
+
+	// object
+	// 同じプロパティ・値のオブジェクトは等しい（インスタンスが異なっていても等しい）
+	assertEquals({}, {});
+	assertEquals({ x: 0 }, { x: 0 });
+
+	// 同一インスタンスは等しい
+	const obj = {};
+	assertEquals(obj, obj);
 });
 
 // assertNotEquals
@@ -55,6 +64,10 @@ Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () =
 
 	// string
 	assertNotEquals("x", "y");
+
+	// object
+	assertNotEquals({ x: 0 }, {});
+	assertNotEquals({ x: 0 }, { x: 1 });
 });
 
 // todo:
