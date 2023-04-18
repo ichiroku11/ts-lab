@@ -40,9 +40,16 @@ Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
 
 	// boolean
 	assertEquals(true, true);
+	assertEquals(false, false);
 
 	// string
 	assertEquals("x", "x");
+
+	// undefined
+	assertEquals(undefined, undefined);
+
+	// null
+	assertEquals(null, null);
 
 	// object
 	// 同じプロパティ・値のオブジェクトは等しい（インスタンスが異なっていても等しい）
