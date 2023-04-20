@@ -84,4 +84,13 @@ Deno.test("NullishCoalescing_真偽値以外も扱える", async (context) => {
 		// Assert
 		assertEquals(actual, 1);
 	});
+
+	await context.step("左オペランドがnullでもundefinedでもない => 左オペランドの値", () => {
+		// Arrange
+		// Act
+		const actual = "a" ?? "b";
+
+		// Assert
+		assertEquals(actual, "a");
+	});
 });
