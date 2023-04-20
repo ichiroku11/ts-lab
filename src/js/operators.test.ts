@@ -61,3 +61,27 @@ Deno.test("LogicalOr_真偽値以外も扱える", async (context) => {
 		assertEquals(actual, "a");
 	});
 });
+
+// Null合体演算子
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
+// x ?? y
+// xがnullまたはundefinedのときのみyを返し、それ以外のときはxを返す
+Deno.test("NullishCoalescing_真偽値以外も扱える", async (context) => {
+	await context.step("左オペランドがnull => 右オペランドの値", () => {
+		// Arrange
+		// Act
+		const actual = null ?? 1;
+
+		// Assert
+		assertEquals(actual, 1);
+	});
+
+	await context.step("左オペランドがundefined => 右オペランドの値", () => {
+		// Arrange
+		// Act
+		const actual = undefined ?? 1;
+
+		// Assert
+		assertEquals(actual, 1);
+	});
+});
