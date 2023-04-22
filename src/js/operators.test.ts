@@ -1,4 +1,5 @@
 import {
+	assert,
 	assertEquals
 } from "testing/asserts.ts";
 
@@ -92,5 +93,33 @@ Deno.test("NullishCoalescing_真偽値以外も扱える", async (context) => {
 
 		// Assert
 		assertEquals(actual, "a");
+	});
+});
+
+// スプレッド構文
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+Deno.test("SpreadSyntax_オブジェクトリテラルで利用する", async (context) => {
+	await context.step("オブジェクトをコピーする", () => {
+		// Arrange
+		const obj = { x: 1 };
+
+		// Act
+		const actual = { ...obj };
+
+		// Assert
+		assert(actual !== obj);
+		assertEquals(actual, { x: 1});
+	});
+
+	await context.step("オブジェクトをマージする", () => {
+		// Arrange
+		const obj1 = { x: 1 };
+		const obj2 = { y: 2 };
+
+		// Act
+		const actual = { ...obj1, ...obj2 };
+
+		// Assert
+		assertEquals(actual, { x: 1, y: 2 });
 	});
 });
