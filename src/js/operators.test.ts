@@ -133,11 +133,18 @@ Deno.test("SpreadSyntax_オブジェクトリテラルで利用する", async (c
 
 		// Assert
 		assertEquals(actual, { x: 2 });
+	});
 
-		// 下記のように同じプロパティを先に記述すると、
-		// 上書きされることになるのでコンパイルエラーになる様子
+	await context.step("同じプロパティを先に記述すると上書きされるのでコンパイルエラーになる", () => {
+		// Arrange
+		const obj1 = { x: 1 };
+
+		// Act
 		// 'x' is specified more than once, so this usage will be overwritten.
-		//const obj1 = { x: 1 };
-		//const obj2 = { x : 2, ...obj1 };
+		// @ts-ignore:
+		const obj2 = { x : 2, ...obj1 };
+
+		// Assert
+		assertEquals(obj2.x, 1);
 	});
 });
