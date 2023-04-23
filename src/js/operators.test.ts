@@ -122,4 +122,16 @@ Deno.test("SpreadSyntax_オブジェクトリテラルで利用する", async (c
 		// Assert
 		assertEquals(actual, { x: 1, y: 2 });
 	});
+
+	await context.step("同じプロパティが存在するオブジェクトをマージする場合は値が上書きされる", () => {
+		// Arrange
+		const obj1 = { x: 1 };
+		const obj2 = { x: 2 };
+
+		// Act
+		const actual = { ...obj1, ...obj2 };
+
+		// Assert
+		assertEquals(actual, { x: 2 });
+	});
 });
