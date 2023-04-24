@@ -1,6 +1,7 @@
 import {
 	assert,
-	assertEquals
+	assertEquals,
+	assertFalse
 } from "testing/asserts.ts";
 
 // 分割代入
@@ -147,4 +148,20 @@ Deno.test("SpreadSyntax_オブジェクトリテラルで利用する", async (c
 		// Assert
 		assertEquals(obj2.x, 1);
 	});
+});
+
+// 厳密等価演算子（===）
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Strict_equality
+Deno.test("===_別々のオブジェクトを比較すると常にfalseになる", () => {
+	// Arrange
+	const obj1 = {};
+	const obj2 = {};
+
+	// Act
+	// Assert
+	assertFalse(obj1 === obj2);
+
+	// オブジェクトリテラル同士を比較するとコンパイルエラーになる様子
+	// This condition will always return 'false' since JavaScript compares objects by reference, not value.deno-ts(2839)
+	//assertFalse({} === {});
 });
