@@ -165,3 +165,14 @@ Deno.test("===_別々のオブジェクトを比較すると常にfalseになる
 	// This condition will always return 'false' since JavaScript compares objects by reference, not value.deno-ts(2839)
 	//assertFalse({} === {});
 });
+
+// void演算子
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/void
+Deno.test("void_与えられた式を評価してundefinedを返す", () => {
+	// Arrange
+	// Act
+	const actual = void true;
+
+	// Assert
+	assertEquals(actual, undefined);
+});
