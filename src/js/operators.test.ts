@@ -16,6 +16,33 @@ Deno.test("DestructuringAssignment_残余要素に代入する要素がない場
 	assertEquals(rest, []);
 });
 
+Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (context) => {
+	await context.step("プロパティ名と同じ変数名に代入する", () => {
+		// Arrange
+		const obj = { x: 1, y: "a", z: true };
+
+		// Act
+		const { x, y }  = obj;
+
+		// Assert
+		assertEquals(x, 1);
+		assertEquals(y, "a");
+	});
+
+	await context.step("プロパティ名と異なる変数名に代入する", () => {
+		// Arrange
+		const obj = { x: 1, y: "a", z: true };
+
+		// Act
+		// プロパティ名: 変数名
+		const { x: a, y: b }  = obj;
+
+		// Assert
+		assertEquals(a, 1);
+		assertEquals(b, "a");
+	});
+});
+
 // 論理積
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_AND
 // x && y
