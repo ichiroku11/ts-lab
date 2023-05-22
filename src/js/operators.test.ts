@@ -53,6 +53,18 @@ Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (co
 		// Assert
 		assertEquals(y, "a");
 	});
+
+	await context.step("ネストしたパターンでプロパティ名と異なる変数名に代入する", () => {
+		// Arrange
+		const obj = { x: { y: "a" } };
+
+		// Act
+		// プロパティ名: パターン
+		const { x: { y: value } }  = obj;
+
+		// Assert
+		assertEquals(value, "a");
+	});
 });
 
 // 論理積
