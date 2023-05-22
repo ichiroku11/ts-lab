@@ -41,6 +41,18 @@ Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (co
 		assertEquals(a, 1);
 		assertEquals(b, "a");
 	});
+
+	await context.step("ネストしたパターンを試す", () => {
+		// Arrange
+		const obj = { x: { y: "a" } };
+
+		// Act
+		// プロパティ名: パターン
+		const { x: { y } }  = obj;
+
+		// Assert
+		assertEquals(y, "a");
+	});
 });
 
 // 論理積
