@@ -67,6 +67,35 @@ Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (co
 	});
 });
 
+Deno.test("DestructuringAssignment_オブジェクトと配列を組み合わせた分割代入", async (context) => {
+	await context.step("配列プロパティの要素を変数に代入する", () => {
+		// Arrange
+		const obj = { values: [1, 2, 3] };
+
+		// Act
+		// valuesの0番目、1番目を変数に代入する
+		const { values: [a, b] }  = obj;
+
+		// Assert
+		assertEquals(a, 1);
+		assertEquals(b, 2);
+	});
+
+	// todo: オブジェクトの配列
+	await context.step("オブジェクトの配列要素のプロパティ値を変数に代入する", () => {
+		// Arrange
+		const values = [{ name: "a" }, { name: "b" }, { name: "c" }];
+
+		// Act
+		// valuesの0番目のオブジェクトの"name"プロパティの値を
+		// 変数"x"に代入する
+		const [{ name: x }]  = values;
+
+		// Assert
+		assertEquals(x, "a");
+	});
+});
+
 // 論理積
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_AND
 // x && y
