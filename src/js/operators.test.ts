@@ -6,14 +6,16 @@ import {
 
 // 分割代入
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-Deno.test("DestructuringAssignment_残余要素に代入する要素がない場合は空配列になる", () => {
-	// Arrange
-	// Act
-	const [value, ...rest] = [1];
-
-	// Assert
-	assertEquals(value, 1);
-	assertEquals(rest, []);
+Deno.test("DestructuringAssignment_配列の分割代入", async (context) => {
+	await context.step("残余要素に代入する要素がない場合は空配列になる", () => {
+		// Arrange
+		// Act
+		const [value, ...rest] = [1];
+	
+		// Assert
+		assertEquals(value, 1);
+		assertEquals(rest, []);
+	});
 });
 
 Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (context) => {
