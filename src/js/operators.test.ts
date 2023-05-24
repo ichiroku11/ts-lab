@@ -16,6 +16,16 @@ Deno.test("DestructuringAssignment_配列の分割代入", async (context) => {
 		assertEquals(value, 1);
 		assertEquals(rest, []);
 	});
+
+	await context.step("空白を使って要素をスキップして取得する", () => {
+		// Arrange
+		// Act
+		const [, a, , , b] = [1, 2, 3, 4, 5];
+	
+		// Assert
+		assertEquals(a, 2);
+		assertEquals(b, 5);
+	});
 });
 
 Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (context) => {
