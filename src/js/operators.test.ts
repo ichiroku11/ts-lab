@@ -38,6 +38,15 @@ Deno.test("DestructuringAssignment_配列の分割代入", async (context) => {
 });
 
 Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (context) => {
+	await context.step("restパターン", () => {
+		// Arrange
+		// Act
+		const { x: _, ...rest } = { x: 1, y: "a", z: true };
+	
+		// Assert
+		assertEquals(rest, { y: "a", z: true});
+	});
+
 	await context.step("プロパティ名と同じ変数名に代入する", () => {
 		// Arrange
 		const obj = { x: 1, y: "a", z: true };
