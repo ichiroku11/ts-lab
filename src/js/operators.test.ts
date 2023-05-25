@@ -7,6 +7,15 @@ import {
 // 分割代入
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 Deno.test("DestructuringAssignment_配列の分割代入", async (context) => {
+	await context.step("restパターン", () => {
+		// Arrange
+		// Act
+		const [_, ...rest] = [1, 2, 3];
+	
+		// Assert
+		assertEquals(rest, [2, 3]);
+	});
+
 	await context.step("残余要素に代入する要素がない場合は空配列になる", () => {
 		// Arrange
 		// Act
