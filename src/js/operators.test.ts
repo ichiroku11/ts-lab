@@ -95,6 +95,21 @@ Deno.test("DestructuringAssignment_オブジェクトの分割代入", async (co
 		// Assert
 		assertEquals(value, "a");
 	});
+
+	await context.step("デフォルト値を指定する", () => {
+		// obj.xの型はnumber | undefinedだが、xの型はnumberになる
+
+		// Arrange
+		const obj: { x?: number } = {};
+
+		// Act
+		// デフォルト値を指定する
+		// 値がundefinedのときデフォルト値になる
+		const { x = -1 }  = obj;
+
+		// Assert
+		assertEquals(x, -1);
+	});
 });
 
 Deno.test("DestructuringAssignment_オブジェクトと配列を組み合わせた分割代入", async (context) => {
