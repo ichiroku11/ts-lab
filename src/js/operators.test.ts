@@ -149,7 +149,6 @@ Deno.test("DestructuringAssignment_オブジェクトと配列を組み合わせ
 		assertEquals(b, 2);
 	});
 
-	// todo: オブジェクトの配列
 	await context.step("オブジェクトの配列要素のプロパティ値を変数に代入する", () => {
 		// Arrange
 		const values = [{ name: "a" }, { name: "b" }, { name: "c" }];
@@ -162,6 +161,24 @@ Deno.test("DestructuringAssignment_オブジェクトと配列を組み合わせ
 		// Assert
 		assertEquals(x, "a");
 	});
+});
+
+Deno.test("DestructuringAssignment_関数の引数に対してオブジェクトの分割代入を行う", () => {
+	// Arrange
+	type Rect = {
+		height: number,
+		width: number,
+	};
+
+	// 関数の引数名の代わりにパターンを書く
+	const calcArea = ({ height, width }: Rect) => height * width;
+
+	// Act
+	const rect = { height: 10, width: 20 };
+	const actual = calcArea(rect);
+
+	// Assert
+	assertEquals(actual, 200);
 });
 
 // 論理積
