@@ -13,7 +13,7 @@ type Item = {
 // 空き容量capacityのナップサックに
 // index番目以降の品物を入れる場合の最大価値を算出する
 // ※メモ化はしていない
-function knapsack(items: readonly Readonly<Item>[], index: number, capacity: number): number {
+function knapsack(capacity: number, items: readonly Readonly<Item>[], index = 0): number {
 	// 3. 問題の解が自明な場合は再帰呼び出しを行なわないようにする
 	if (index >= items.length) {
 		// 品物は存在しない
@@ -25,7 +25,7 @@ function knapsack(items: readonly Readonly<Item>[], index: number, capacity: num
 
 		// 1. 問題を1段階簡単にしたうえで再帰呼び出しを行う
 		// index番目の品物をナップサックに入れない場合の最大価値を取得
-		const value = knapsack(items, index + 1, capacity);
+		const value = knapsack(capacity, items, index + 1);
 
 		// 2. 再帰呼び出しの結果を利用して問題を1段階だけ解く
 		// index番目の品物はナップサックに入らないので入れる場合の価値は考慮不要
@@ -35,10 +35,10 @@ function knapsack(items: readonly Readonly<Item>[], index: number, capacity: num
 
 	// 1. 問題を1段階簡単にしたうえで再帰呼び出しを行う
 	// index番目の品物をナップサックに入れない場合の最大価値を取得
-	const value1 = knapsack(items, index + 1, capacity);
+	const value1 = knapsack(capacity, items, index + 1);
 
 	// index番目の品物をナップサックに入れる場合の最大価値を取得
-	const value2 = knapsack(items, index + 1, capacity - items[index].weight);
+	const value2 = knapsack(capacity - items[index].weight, items, index + 1);
 
 	// 2. 再帰呼び出しの結果を利用して問題を1段階だけ解く
 	// index番目の品物を入れる場合と入れない場合との大きい方の価値を取得
@@ -63,10 +63,10 @@ Deno.test("knapsack_正しく求められることを確認する", async (conte
 	];
 
 	for (const [capacity, expected] of testData) {
-		await context.step(`knapsack(items, 0, ${capacity}) => ${expected}`, () => {
+		await context.step(`knapsack(${capacity}, items) => ${expected}`, () => {
 			// Arrange
 			// Act
-			const actual = knapsack(items, 0, capacity);
+			const actual = knapsack(capacity, items);
 
 			// Assert
 			assertEquals(actual, expected);
