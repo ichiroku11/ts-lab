@@ -10,7 +10,7 @@ function factorial(num: number): number {
 		return 1;
 	}
 
-	// 1. 問題を1段階簡単にしたうえで再帰呼び出しを行なう
+	// 1. 問題を1段階簡単にしたうえで再帰呼び出しを行う
 	const result = factorial(num - 1);
 
 	// 2. 再帰呼び出しの結果を利用して問題を1段階だけ解く
