@@ -341,3 +341,16 @@ Deno.test("void_与えられた式を評価してundefinedを返す", () => {
 	// Assert
 	assertEquals(actual, undefined);
 });
+
+// instanceof演算子
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/instanceof
+Deno.test("instanceof_型を判断できる", () => {
+	// Arrange
+	const map = new Map();
+
+	// Act
+	const actual = map instanceof Map;
+
+	// Assert
+	assert(actual);
+});
