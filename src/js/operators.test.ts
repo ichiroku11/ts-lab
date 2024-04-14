@@ -354,3 +354,32 @@ Deno.test("instanceof_型を判断できる", () => {
 	// Assert
 	assert(actual);
 });
+
+// typeof演算子
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/typeof
+Deno.test("typeof_型の文字列を取得できる", async (context) => {
+	// todo:
+	const testData: [unknown, string][] = [
+		// [source, expected]
+		["a", "string"],
+		[1, "number"],
+		[true, "boolean"],
+		[1n, "bigint"],
+		[{}, "object"],
+		// nullは"object"
+		[null, "object"],
+		[undefined, "undefined"],
+		[() => {}, "function"],
+	];
+
+	for (const [source, expected] of testData) {
+		await context.step(`typeof ${source} => "${expected}"`, () => {
+			// Arrange
+			// Act
+			const actual = typeof source;
+
+			// Assert
+			assertEquals(actual, expected);
+		});
+	}
+});
