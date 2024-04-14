@@ -2,6 +2,7 @@ import {
 	assertEquals
 } from "testing/asserts.ts";
 
+// ユニオン型：いずれかの型
 // https://typescriptbook.jp/reference/values-types-variables/union
 
 type Rect =  {
@@ -17,7 +18,6 @@ type Circle = {
 	radius: number;
 };
 
-// ユニオン型：複数の型のどれかの型
 type Shape = Rect | Circle;
 
 Deno.test("union_動きを確認する", () => {
