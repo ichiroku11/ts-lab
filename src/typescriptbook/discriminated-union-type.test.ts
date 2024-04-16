@@ -26,7 +26,7 @@ function getMessage<TValue>(result: Result<TValue>): string {
 	return "失敗";
 }
 
-Deno.test("discriminated-union_動きを確認する", () => {
+Deno.test("discriminated-union-type_動きを確認する", () => {
 	// Arrange
 	const result: Result<number> = {
 		type: "success",

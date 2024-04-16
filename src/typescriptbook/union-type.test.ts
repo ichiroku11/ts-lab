@@ -20,7 +20,7 @@ type Circle = {
 
 type Shape = Rect | Circle;
 
-Deno.test("union_動きを確認する", () => {
+Deno.test("union-type_動きを確認する", () => {
 	// Arrange
 	// Act
 	const shape1: Shape = {

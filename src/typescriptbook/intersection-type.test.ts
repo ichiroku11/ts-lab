@@ -14,7 +14,7 @@ type Vector3 = Vector2 & {
 	z: number;
 };
 
-Deno.test("intersection_動きを確認する", () => {
+Deno.test("intersection-type_動きを確認する", () => {
 	// Arrange
 	// Act
 	const vector: Vector3 = {
