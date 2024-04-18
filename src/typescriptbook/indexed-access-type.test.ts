@@ -25,10 +25,12 @@ type StringValues = string[];
 // type Type4 = string
 type Type4 = StringValues[number];
 
+
 // タプルの場合
 type Tuple = [string, number];
 // type Type5 = string | number
 type Type5 = Tuple[0 | 1];
+
 
 // あまり意味のないテスト
 Deno.test("indexed-access-type_動きを確認する", () => {
