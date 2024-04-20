@@ -26,6 +26,7 @@ Deno.test("keyof-type-operator_動きを確認する", () => {
 	assertStrictEquals(key2, "price");
 });
 
+
 // 書籍「TypeScript入門」p.281より
 // typeofとkeyofを組み合わせて、変数からオブジェクトのプロパティ名を取得する
 const mmConversions = {
@@ -64,4 +65,32 @@ Deno.test("keyof-type-operator_convertUnit関数の動きを確認する", async
 			assertStrictEquals(actual, expected);
 		});
 	}
+});
+
+
+// 書籍「TypeScript入門」p.283より
+// extendsとkeyofを組み合わせて、引数によって戻り値の型が異なる関数
+// 「TKeyは、keyof TObjectの部分でなければいけない」という制約
+function getPropertyValue<TObject, TKey extends keyof TObject>(obj: TObject, key: TKey): TObject[TKey] {
+	return obj[key];
+}
+
+Deno.test("keyof-type-operator_getPropertyValue関数の動きを確認する", () => {
+	// Arrange
+	const product: Product = {
+		name: "abc",
+		price: 100,
+	};
+
+	// Act
+	// Product型の場合は、get関数の第2引数は"name" | "price"になる
+	// nameはstring型
+	const name = getPropertyValue(product, "name");
+
+	// priceはnumber型
+	const price = getPropertyValue(product, "price");
+
+	// Assert
+	assertStrictEquals(name, "abc");
+	assertStrictEquals(price, 100);
 });
