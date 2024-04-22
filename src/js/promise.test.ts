@@ -61,3 +61,17 @@ Deno.test("Promise.all_すべての処理が成功したときに成功するイ
 	// Assert
 	assertEquals(actual, [1, "x", true]);
 });
+
+// Promise.finally
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally
+Deno.test("Promise.finally_Promiseを返しプロミスチェーンができるが返した値は使われない", async () => {
+	// Arrange
+	// Act
+	const actual = await Promise.resolve(2)
+		// プロミスチェーンはできるが、finallyで返した値は使われない
+		.finally(() => 3)
+		.then(value => value * 2);
+
+	// Assert
+	assertStrictEquals(actual, 4);
+});
