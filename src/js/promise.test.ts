@@ -2,7 +2,7 @@ import {
 	assert,
 	assertEquals,
 	assertRejects,
-	assertStrictEquals
+	assertStrictEquals,
 } from "testing/asserts.ts";
 
 // 参考
@@ -60,6 +60,16 @@ Deno.test("Promise.all_すべての処理が成功したときに成功するイ
 
 	// Assert
 	assertEquals(actual, [1, "x", true]);
+});
+
+Deno.test("Promise.all_どれか1つでも失敗すると失敗するインスタンスを生成する", async () => {
+	// Arrange
+	// Act
+	// Assert
+	await assertRejects(
+		() => Promise.all([Promise.resolve(1), Promise.reject(new Error("error!"))]),
+		Error,
+		"error!");
 });
 
 // Promise.finally
