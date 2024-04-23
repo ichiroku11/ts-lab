@@ -85,3 +85,26 @@ Deno.test("Promise.finally_Promiseを返しプロミスチェーンができる�
 	// Assert
 	assertStrictEquals(actual, 4);
 });
+
+// Promise.then
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+Deno.test("Promise.then_返した値をPromiseから取得できる", async () => {
+	// Arrange
+	// Act
+	const actual = await Promise.resolve(1)
+		.then(value => value * 2);
+
+	// Assert
+	assertEquals(2, actual);
+});
+
+Deno.test("Promise.then_Promiseを返した場合でもPromiseのネストにはならない", async () => {
+	// Arrange
+	// Act
+	const promise = Promise.resolve(1)
+		.then(value => Promise.resolve(value * 2));
+
+	// Assert
+	assert(promise instanceof Promise);
+	assertEquals(2, await promise);
+});
