@@ -74,6 +74,39 @@ Deno.test("Promise.all_どれか1つでも失敗すると失敗するインス�
 
 // Promise.finally
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally
+Deno.test("Promise.finally_成功した場合に呼び出される", async () => {
+	// Arrange
+	let called = false;
+
+	// Act
+	const actual = await Promise.resolve(1)
+		.finally(() => called = true);
+
+	// Assert
+	assert(called);
+	assertStrictEquals(actual, 1);
+});
+
+Deno.test("Promise.finally_失敗した場合でも呼び出される", async () => {
+	// Arrange
+	const called: string[] = [];
+
+	// Act
+	try {
+		await Promise.reject(new Error("error!"))
+			.finally(() => called.push("finally"));
+	} catch (error) {
+		if (error instanceof Error) {
+			called.push(error.message);
+		}
+	}
+
+	// Assert
+	assertStrictEquals(called.length, 2);
+	assertStrictEquals(called[0], "finally");
+	assertStrictEquals(called[1], "error!");
+});
+
 Deno.test("Promise.finally_Promiseを返しプロミスチェーンができるが返した値は使われない", async () => {
 	// Arrange
 	// Act
