@@ -1,6 +1,7 @@
 import {
 	assert,
 	assertEquals,
+	assertInstanceOf,
 	assertRejects,
 	assertStrictEquals,
 } from "testing/asserts.ts";
@@ -70,6 +71,26 @@ Deno.test("Promise.all_どれか1つでも失敗すると失敗するインス�
 		() => Promise.all([Promise.resolve(1), Promise.reject(new Error("error!"))]),
 		Error,
 		"error!");
+});
+
+// Promise.allSettled
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled
+Deno.test("Promise.allSettled_成功失敗に関わらずすべての結果を含んだインスタンスを生成する", async () => {
+	// Arrange
+	// Act
+	const actual = await Promise.allSettled([Promise.resolve(1), Promise.reject(new Error("error!"))]);
+
+	// Assert
+	assertStrictEquals(actual.length, 2);
+
+	const actual0 = actual[0];
+	assertStrictEquals(actual0.status, "fulfilled");
+	assertStrictEquals(actual0.value, 1);
+
+	const actual1 = actual[1];
+	assertStrictEquals(actual1.status, "rejected");
+	assertInstanceOf(actual1.reason, Error);
+	assertStrictEquals(actual1.reason.message, "error!");
 });
 
 // Promise.finally
