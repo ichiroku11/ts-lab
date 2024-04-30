@@ -33,3 +33,15 @@ Deno.test("AbortSignal.throwIfAborted_abortされたAbortSignalからは例外�
 	assertStrictEquals(typeof error, "string");
 	assertStrictEquals(error, "abort!");
 });
+
+Deno.test("AbortSignal.throwIfAborted_Errorを渡してabortされたAbortSignalからはErrorが発生する", () => {
+	// Arrange
+	const signal = AbortSignal.abort(new Error("abort!"));
+
+	// Act
+	// Assert
+	assertThrows(
+		() => signal.throwIfAborted(),
+		Error,
+		"abort!");
+});
