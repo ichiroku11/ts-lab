@@ -31,6 +31,19 @@ Deno.test("AbortSignal.abort_引数に文字列を指定してabortされたAbor
 });
 
 // AbortSignal.throwIfAborted
+Deno.test("AbortSignal.throwIfAborted_引数なしでabortされたAbortSignalからは例外が発生する", () => {
+	// Arrange
+	const signal = AbortSignal.abort();
+
+	// Act
+	// Assert
+	const error = assertThrows(
+		() => signal.throwIfAborted(),
+		DOMException);
+
+	console.log(error.message);
+});
+
 Deno.test("AbortSignal.throwIfAborted_引数に文字列を指定してabortされたAbortSignalからは例外が発生する", () => {
 	// Arrange
 	const signal = AbortSignal.abort("abort!");
