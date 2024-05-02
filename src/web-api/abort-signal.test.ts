@@ -30,6 +30,17 @@ Deno.test("AbortSignal.abort_引数に文字列を指定してabortされたAbor
 	assertStrictEquals(signal.reason, "abort!");
 });
 
+Deno.test("AbortSignal.abort_引数にErrorを指定してabortされたAbortSignalを生成する", () => {
+	// Arrange
+	// Act
+	const signal = AbortSignal.abort(new Error("abort!"));
+
+	// Assert
+	assert(signal.aborted);
+	assertInstanceOf(signal.reason, Error);
+	assertStrictEquals(signal.reason.message, "abort!");
+});
+
 // AbortSignal.throwIfAborted
 Deno.test("AbortSignal.throwIfAborted_引数なしでabortされたAbortSignalからは例外が発生する", () => {
 	// Arrange
