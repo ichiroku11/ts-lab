@@ -11,7 +11,7 @@ Deno.test("タスクとマイクロタスクの実行順を確認する", async 
 	steps.push(1);
 
 	// setTimeoutはタスク
-	setTimeout(() => {
+	const timeoutId = setTimeout(() => {
 		// このtestの中では、このコールバックは呼ばれない
 		steps.push(5);
 	});
@@ -31,4 +31,7 @@ Deno.test("タスクとマイクロタスクの実行順を確認する", async 
 
 	// Assert
 	assertEquals(steps, [1, 2, 3, 4]);
+
+	// コールバックはキャンセルしておく
+	clearTimeout(timeoutId);
 });
