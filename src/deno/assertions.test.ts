@@ -13,7 +13,9 @@ import {
 	assertNotMatch,
 	assertObjectMatch,
 	assertThrows,
-	assertRejects
+	assertRejects,
+	assertStrictEquals,
+	assertNotStrictEquals
 } from "testing/asserts.ts";
 
 Deno.test("assert_truthyを確認する", () => {
@@ -85,8 +87,45 @@ Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () =
 	assertNotEquals([2, 1], [1, 2]);
 });
 
-// todo:
-// assertStrictEquals
+Deno.test("assertStrictEquals_2つの引数が厳密に等しいか検証する", () => {
+	// number
+	assertStrictEquals(1, 1);
+
+	// boolean
+	assertStrictEquals(true, true);
+	assertStrictEquals(false, false);
+
+	// string
+	assertStrictEquals("x", "x");
+
+	// undefined
+	assertStrictEquals(undefined, undefined);
+
+	// null
+	assertStrictEquals(null, null);
+
+	// object
+	// 同一インスタンスは等しい
+	const obj = {};
+	assertEquals(obj, obj);
+
+	// array
+	// 同一インスタンスは等しい
+	const arr: number[] = [];
+	assertStrictEquals(arr, arr);
+});
+
+Deno.test("assertNotStrictEquals_2つの引数が厳密に等しくないか検証する", () => {
+	// object
+	// インスタンスが異なるので等しくない
+	assertNotStrictEquals({}, {});
+	assertNotStrictEquals({ x: 0 }, { x: 0 });
+
+	// array
+	// インスタンスが異なるので等しくない
+	assertNotStrictEquals([], []);
+	assertNotStrictEquals([1, 2], [1, 2]);	
+});
 
 // assertExists
 Deno.test("assertExists_null、undefined以外かどうかを検証する", () => {
