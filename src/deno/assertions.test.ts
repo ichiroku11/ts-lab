@@ -59,6 +59,10 @@ Deno.test("assertEquals_2つの引数が等しいか検証する", () => {
 	// 同一インスタンスは等しい
 	const obj = {};
 	assertEquals(obj, obj);
+
+	// array
+	assertEquals([], []);
+	assertEquals([1, 2], [1, 2]);
 });
 
 // assertNotEquals
@@ -75,6 +79,10 @@ Deno.test("assertNotEquals_2つの引数が等しくないか検証する", () =
 	// object
 	assertNotEquals({ x: 0 }, {});
 	assertNotEquals({ x: 0 }, { x: 1 });
+
+	// array
+	assertNotEquals([], [1]);
+	assertNotEquals([2, 1], [1, 2]);
 });
 
 // todo:
