@@ -2,7 +2,7 @@ import {
 	assertEquals
 } from "testing/asserts.ts";
 
-
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set/values
 Deno.test("values_挿入順に取得できる", () => {
 	// Arrange
 	const set = new Set([5, 4, 3]);
@@ -15,6 +15,21 @@ Deno.test("values_挿入順に取得できる", () => {
 	// Assert
 	// 挿入した順に取得できる
 	assertEquals(values, [5, 4, 3, 2, 1]);
+});
+
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set/keys
+Deno.test("keys_valuesと同じ値を取得できる", () => {
+	// Arrange
+	const set = new Set([1, 3, 2, 5, 4]);
+
+	// Act
+	const keys = [...set.keys()];
+	const values = [...set.values()];
+  
+	// Assert
+	// 挿入した順じ取得できる
+	assertEquals(keys, [1, 3, 2, 5, 4]);
+	assertEquals(values, [1, 3, 2, 5, 4]);
 });
 
 // https://web.dev/blog/set-methods
