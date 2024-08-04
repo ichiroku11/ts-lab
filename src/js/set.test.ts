@@ -2,6 +2,21 @@ import {
 	assertEquals
 } from "testing/asserts.ts";
 
+
+Deno.test("values_挿入順に取得できる", () => {
+	// Arrange
+	const set = new Set([5, 4, 3]);
+	set.add(2);
+	set.add(1);
+  
+	// Act
+	const values = [...set.values()];
+  
+	// Assert
+	// 挿入した順に取得できる
+	assertEquals(values, [5, 4, 3, 2, 1]);
+});
+
 // https://web.dev/blog/set-methods
 Deno.test("intersection", async (context) => {
 	await context.step("両方の要素を含むSetを返す", () => {
