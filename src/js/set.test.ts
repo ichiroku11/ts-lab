@@ -2,6 +2,9 @@ import {
 	assertEquals
 } from "testing/asserts.ts";
 
+// 集合演算についての参考記事
+// https://web.dev/blog/set-methods
+
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set/values
 Deno.test("values_挿入順に取得できる", () => {
 	// Arrange
@@ -27,12 +30,12 @@ Deno.test("keys_valuesと同じ値を取得できる", () => {
 	const values = [...set.values()];
   
 	// Assert
-	// 挿入した順じ取得できる
+	// 挿入した順に取得できる
 	assertEquals(keys, [1, 3, 2, 5, 4]);
 	assertEquals(values, [1, 3, 2, 5, 4]);
 });
 
-// https://web.dev/blog/set-methods
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection
 Deno.test("intersection", async (context) => {
 	await context.step("両方の要素を含むSetを返す", () => {
 		// Arrange
@@ -60,5 +63,23 @@ Deno.test("intersection", async (context) => {
 		// Assert
 		assertEquals([...actual1], []);
 		assertEquals([...actual2], []);
+	});
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union
+Deno.test("union", async (context) => {
+	await context.step("どちらかのSetに存在する要素を含むSetを返す", () => {
+		// Arrange
+		const set1 = new Set([1, 2, 3]);
+		const set2 = new Set([2, 3, 4]);
+
+		// Act
+		const actual1 = set1.union(set2);
+		const actual2 = set2.union(set1);
+
+		// Assert
+		// 挿入した順に取得できる
+		assertEquals([...actual1], [1, 2, 3, 4]);
+		assertEquals([...actual2], [2, 3, 4, 1]);
 	});
 });
