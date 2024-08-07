@@ -83,3 +83,21 @@ Deno.test("union", async (context) => {
 		assertEquals([...actual2], [2, 3, 4, 1]);
 	});
 });
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference
+Deno.test("difference", async (context) => {
+	await context.step("指定されたSetに含まれない要素を含むSetを返す", () => {
+		// Arrange
+		const set1 = new Set([1, 2, 3]);
+		const set2 = new Set([2, 3, 4]);
+
+		// Act
+		const actual1 = set1.difference(set2);
+		const actual2 = set2.difference(set1);
+
+		// Assert
+		assertEquals([...actual1], [1]);
+		assertEquals([...actual2], [4]);
+	});
+});
+
