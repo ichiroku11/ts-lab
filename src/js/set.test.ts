@@ -101,3 +101,19 @@ Deno.test("difference", async (context) => {
 	});
 });
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference
+Deno.test("symmetricDifference", async (context) => {
+	await context.step("両方のSetに含まれない要素を含むSetを返す", () => {
+		// Arrange
+		const set1 = new Set([1, 2, 3]);
+		const set2 = new Set([2, 3, 4]);
+
+		// Act
+		const actual1 = set1.symmetricDifference(set2);
+		const actual2 = set2.symmetricDifference(set1);
+
+		// Assert
+		assertEquals([...actual1], [1, 4]);
+		assertEquals([...actual2], [4, 1]);
+	});
+});
