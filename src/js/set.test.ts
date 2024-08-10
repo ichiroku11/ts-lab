@@ -123,9 +123,9 @@ Deno.test("symmetricDifference", async (context) => {
 Deno.test("isSubsetOf", async (context) => {
 	await context.step("Setの要素すべてが指定したSetに含まれている場合はtrueを返す", () => {
 		// Arrange
-		// 20より小さい4の倍数と2の倍数
-		const fours = new Set([4, 8, 12, 16]);
-		const evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+		// 10以下の4の倍数と2の倍数
+		const fours = new Set([4, 8]);
+		const evens = new Set([2, 4, 6, 8, 10]);
 
 		// Act
 		const actual = fours.isSubsetOf(evens);
