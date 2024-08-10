@@ -1,4 +1,5 @@
 import {
+	assert,
 	assertEquals
 } from "testing/asserts.ts";
 
@@ -116,4 +117,23 @@ Deno.test("symmetricDifference", async (context) => {
 		assertEquals([...actual1], [1, 4]);
 		assertEquals([...actual2], [4, 1]);
 	});
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSubsetOf
+Deno.test("isSubsetOf", async (context) => {
+	await context.step("Setの要素すべてが指定したSetに含まれている場合はtrueを返す", () => {
+		// Arrange
+		// 20より小さい4の倍数と2の倍数
+		const fours = new Set([4, 8, 12, 16]);
+		const evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+
+		// Act
+		const actual = fours.isSubsetOf(evens);
+
+		// Assert
+		assert(actual);
+	});
+
+	// todo: 同じ要素もつSetの場合（並び順の違い）
+	// todo: otherの方が少ない場合はfalse
 });
