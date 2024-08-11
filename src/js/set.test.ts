@@ -134,6 +134,18 @@ Deno.test("isSubsetOf", async (context) => {
 		assert(actual);
 	});
 
-	// todo: 同じ要素もつSetの場合（並び順の違い）
+	await context.step("同じ要素を持つSetを指定した場合trueを返す", () => {
+		// Arrange
+		const set = new Set([1, 2, 3]);
+		// 登録順は異なるが・・・
+		const other = new Set([3, 2, 1]);
+
+		// Act
+		const actual = set.isSubsetOf(other);
+
+		// Assert
+		assert(actual);
+	});	
+
 	// todo: otherの方が少ない場合はfalse
 });
