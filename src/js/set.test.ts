@@ -1,6 +1,7 @@
 import {
 	assert,
-	assertEquals
+	assertEquals,
+	assertFalse
 } from "testing/asserts.ts";
 
 // 集合演算についての参考記事
@@ -134,6 +135,19 @@ Deno.test("isSubsetOf", async (context) => {
 		assert(actual);
 	});
 
+	await context.step("Setの要素すべてが指定したSetに含まれていない場合はfalseを返す", () => {
+		// Arrange
+		// 10以下の2の倍数と4の倍数
+		const evens = new Set([2, 4, 6, 8, 10]);
+		const fours = new Set([4, 8]);
+
+		// Act
+		const actual = evens.isSubsetOf(fours);
+
+		// Assert
+		assertFalse(actual);
+	});
+
 	await context.step("同じ要素を持つSetを指定した場合trueを返す", () => {
 		// Arrange
 		const set = new Set([1, 2, 3]);
@@ -146,6 +160,4 @@ Deno.test("isSubsetOf", async (context) => {
 		// Assert
 		assert(actual);
 	});	
-
-	// todo: otherの方が少ない場合はfalse
 });
