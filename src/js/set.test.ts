@@ -13,10 +13,10 @@ Deno.test("values_挿入順に取得できる", () => {
 	const set = new Set([5, 4, 3]);
 	set.add(2);
 	set.add(1);
-  
+
 	// Act
 	const values = [...set.values()];
-  
+
 	// Assert
 	// 挿入した順に取得できる
 	assertEquals(values, [5, 4, 3, 2, 1]);
@@ -30,7 +30,7 @@ Deno.test("keys_valuesと同じ値を取得できる", () => {
 	// Act
 	const keys = [...set.keys()];
 	const values = [...set.values()];
-  
+
 	// Assert
 	// 挿入した順に取得できる
 	assertEquals(keys, [1, 3, 2, 5, 4]);
@@ -57,11 +57,11 @@ Deno.test("intersection", async (context) => {
 		// Arrange
 		const set1 = new Set([1, 2, 3]);
 		const set2 = new Set();
-	
+
 		// Act
 		const actual1 = set1.intersection(set2);
 		const actual2 = set2.intersection(set1);
-	
+
 		// Assert
 		assertEquals([...actual1], []);
 		assertEquals([...actual2], []);
@@ -159,7 +159,16 @@ Deno.test("isSubsetOf", async (context) => {
 
 		// Assert
 		assert(actual);
-	});	
+	});
+
+	await context.step("空のSet同士ではtrueを返す", () => {
+		// Arrange
+		// Act
+		const actual = new Set().isSubsetOf(new Set());
+
+		// Assert
+		assert(actual);
+	});
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSupersetOf
@@ -201,5 +210,16 @@ Deno.test("isSupersetOf", async (context) => {
 
 		// Assert
 		assert(actual);
-	});	
+	});
+
+	await context.step("空のSet同士ではtrueを返す", () => {
+		// Arrange
+		// Act
+		const actual = new Set().isSupersetOf(new Set());
+
+		// Assert
+		assert(actual);
+	});
 });
+
+// todo: isDisjointFrom
