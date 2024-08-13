@@ -148,7 +148,7 @@ Deno.test("isSubsetOf", async (context) => {
 		assertFalse(actual);
 	});
 
-	await context.step("同じ要素を持つSetを指定した場合trueを返す", () => {
+	await context.step("同じ要素を持つSetを指定した場合はtrueを返す", () => {
 		// Arrange
 		const set = new Set([1, 2, 3]);
 		// 登録順は異なるが・・・
@@ -156,6 +156,48 @@ Deno.test("isSubsetOf", async (context) => {
 
 		// Act
 		const actual = set.isSubsetOf(other);
+
+		// Assert
+		assert(actual);
+	});	
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSupersetOf
+Deno.test("isSupersetOf", async (context) => {
+	await context.step("指定したSetの要素すべてが自身のSetに含まれている場合はtrueを返す", () => {
+		// Arrange
+		// 10以下の4の倍数と2の倍数
+		const evens = new Set([2, 4, 6, 8, 10]);
+		const fours = new Set([4, 8]);
+
+		// Act
+		const actual = evens.isSupersetOf(fours);
+
+		// Assert
+		assert(actual);
+	});
+
+	await context.step("指定したSetの要素すべてが自身のSetに含まれていない場合はfalseを返す", () => {
+		// Arrange
+		// 10以下の2の倍数と4の倍数
+		const fours = new Set([4, 8]);
+		const evens = new Set([2, 4, 6, 8, 10]);
+
+		// Act
+		const actual = fours.isSupersetOf(evens);
+
+		// Assert
+		assertFalse(actual);
+	});
+
+	await context.step("同じ要素を持つSetを指定した場合はtrueを返す", () => {
+		// Arrange
+		const set = new Set([1, 2, 3]);
+		// 登録順は異なるが・・・
+		const other = new Set([3, 2, 1]);
+
+		// Act
+		const actual = set.isSupersetOf(other);
 
 		// Assert
 		assert(actual);
