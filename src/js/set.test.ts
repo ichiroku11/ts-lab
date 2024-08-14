@@ -222,4 +222,15 @@ Deno.test("isSupersetOf", async (context) => {
 	});
 });
 
-// todo: isDisjointFrom
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isDisjointFrom
+Deno.test("isDisjointFrom", async (context) => {
+	await context.step("引数に空のSetを指定すると共通の要素は存在しないのでtrueを返す", () => {
+		// Arrange
+		// Act
+		const actual = new Set().isDisjointFrom(new Set());
+
+		// Assert
+		assert(actual);
+	});
+});
+
