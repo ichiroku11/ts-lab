@@ -219,14 +219,21 @@ Deno.test("isSupersetOf", async (context) => {
 		assert(actual);
 	});
 
-	await context.step("空のSet同士ではtrueを返す", () => {
-		// Arrange
-		// Act
-		const actual = new Set().isSupersetOf(new Set());
-
-		// Assert
-		assert(actual);
-	});
+	const testData: number[][] = [
+		[],
+		[1],
+		[1, 2],
+	];
+	for (const values of testData) {
+		await context.step(`isSupersetOfの引数に空のSetを指定した場合は常にtrueを返す：new Set(${values}).isSupersetOf(new Set())`, () => {
+			// Arrange
+			// Act
+			const actual = new Set(values).isSupersetOf(new Set());
+	
+			// Assert
+			assert(actual);
+		});
+	}	
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isDisjointFrom
