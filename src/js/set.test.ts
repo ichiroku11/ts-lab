@@ -161,14 +161,21 @@ Deno.test("isSubsetOf", async (context) => {
 		assert(actual);
 	});
 
-	await context.step("空のSet同士ではtrueを返す", () => {
-		// Arrange
-		// Act
-		const actual = new Set().isSubsetOf(new Set());
-
-		// Assert
-		assert(actual);
-	});
+	const testData: number[][] = [
+		[],
+		[1],
+		[1, 2],
+	];
+	for (const values of testData) {
+		await context.step(`空のSetに対するisSubsetOfは常にtrueを返す：new Set().isSubsetOf(new Set(${values}))`, () => {
+			// Arrange
+			// Act
+			const actual = new Set().isSubsetOf(new Set(values));
+	
+			// Assert
+			assert(actual);
+		});
+	}
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSupersetOf
