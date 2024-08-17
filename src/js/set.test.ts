@@ -238,6 +238,20 @@ Deno.test("isSupersetOf", async (context) => {
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isDisjointFrom
 Deno.test("isDisjointFrom", async (context) => {
+	await context.step("Setに共通の要素が存在しない場合はtrueを返す", () => {
+		// Arrange
+		const set1 = new Set([1]);
+		const set2 = new Set([2]);
+
+		// Act
+		const actual1 = set1.isDisjointFrom(set2);
+		const actual2 = set2.isDisjointFrom(set1);
+
+		// Assert
+		assert(actual1);
+		assert(actual2);
+	});
+
 	await context.step("引数に空のSetを指定すると共通の要素は存在しないのでtrueを返す", () => {
 		// Arrange
 		// Act
