@@ -8,7 +8,7 @@ import {
 // https://web.dev/blog/set-methods
 
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set/values
-Deno.test("values_挿入順に取得できる", () => {
+Deno.test("Set.values_挿入順に取得できる", () => {
 	// Arrange
 	const set = new Set([5, 4, 3]);
 	set.add(2);
@@ -23,7 +23,7 @@ Deno.test("values_挿入順に取得できる", () => {
 });
 
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set/keys
-Deno.test("keys_valuesと同じ値を取得できる", () => {
+Deno.test("Set.keys_valuesと同じ値を取得できる", () => {
 	// Arrange
 	const set = new Set([1, 3, 2, 5, 4]);
 
@@ -38,7 +38,7 @@ Deno.test("keys_valuesと同じ値を取得できる", () => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection
-Deno.test("intersection", async (context) => {
+Deno.test("Set.intersection", async (context) => {
 	await context.step("両方の要素を含むSetを返す", () => {
 		// Arrange
 		const set1 = new Set([1, 2, 3]);
@@ -69,7 +69,7 @@ Deno.test("intersection", async (context) => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union
-Deno.test("union", async (context) => {
+Deno.test("Set.union", async (context) => {
 	await context.step("どちらかのSetに存在する要素を含むSetを返す", () => {
 		// Arrange
 		const set1 = new Set([1, 2, 3]);
@@ -87,7 +87,7 @@ Deno.test("union", async (context) => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference
-Deno.test("difference", async (context) => {
+Deno.test("Set.difference", async (context) => {
 	await context.step("指定されたSetに含まれない要素を含むSetを返す", () => {
 		// Arrange
 		const set1 = new Set([1, 2, 3]);
@@ -104,7 +104,7 @@ Deno.test("difference", async (context) => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference
-Deno.test("symmetricDifference", async (context) => {
+Deno.test("Set.symmetricDifference", async (context) => {
 	await context.step("両方のSetに含まれない要素を含むSetを返す", () => {
 		// Arrange
 		const set1 = new Set([1, 2, 3]);
@@ -121,7 +121,7 @@ Deno.test("symmetricDifference", async (context) => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSubsetOf
-Deno.test("isSubsetOf", async (context) => {
+Deno.test("Set.isSubsetOf", async (context) => {
 	await context.step("Setの要素すべてが指定したSetに含まれている場合はtrueを返す", () => {
 		// Arrange
 		// 10以下の4の倍数と2の倍数
@@ -179,7 +179,7 @@ Deno.test("isSubsetOf", async (context) => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isSupersetOf
-Deno.test("isSupersetOf", async (context) => {
+Deno.test("Set.isSupersetOf", async (context) => {
 	await context.step("指定したSetの要素すべてが自身のSetに含まれている場合はtrueを返す", () => {
 		// Arrange
 		// 10以下の4の倍数と2の倍数
@@ -237,7 +237,7 @@ Deno.test("isSupersetOf", async (context) => {
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/isDisjointFrom
-Deno.test("isDisjointFrom", async (context) => {
+Deno.test("Set.isDisjointFrom", async (context) => {
 	await context.step("Setに共通の要素が存在しない場合はtrueを返す", () => {
 		// Arrange
 		const set1 = new Set([1]);
