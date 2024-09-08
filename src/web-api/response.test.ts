@@ -3,12 +3,13 @@ import {
 	assertExists
 } from "testing/asserts.ts";
 
-Deno.test("Response.error_生成させれるインスタンスを確認する", () => {
+Deno.test("Response.error_生成されるインスタンスを確認する", () => {
 	// Arrange
 	// Act
 	const acutal = Response.error();
 
 	// Assert
+	// ステータスコードs
 	assertEquals(acutal.status, 0);
 
 	// ヘッダー
@@ -16,5 +17,5 @@ Deno.test("Response.error_生成させれるインスタンスを確認する", 
 	assertEquals(acutal.headers.keys.length, 0)
 
 	// ボディ
-	// todo:
+	assertEquals(acutal.body, null)
 });
