@@ -1,5 +1,6 @@
 import {
-	assertEquals
+	assertEquals,
+	assertExists
 } from "testing/asserts.ts";
 
 Deno.test("Response.error_生成させれるインスタンスを確認する", () => {
@@ -9,4 +10,11 @@ Deno.test("Response.error_生成させれるインスタンスを確認する", 
 
 	// Assert
 	assertEquals(acutal.status, 0);
+
+	// ヘッダー
+	assertExists(acutal.headers)
+	assertEquals(acutal.headers.keys.length, 0)
+
+	// ボディ
+	// todo:
 });
