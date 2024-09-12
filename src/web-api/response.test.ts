@@ -9,7 +9,7 @@ Deno.test("Response.error_生成されるインスタンスを確認する", () 
 	const acutal = Response.error();
 
 	// Assert
-	// ステータスコードs
+	// ステータスコード
 	assertEquals(acutal.status, 0);
 
 	// ヘッダー
