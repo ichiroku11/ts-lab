@@ -4,6 +4,8 @@ import {
 	assertThrows
 } from "testing/asserts.ts";
 
+// https://developer.mozilla.org/ja/docs/Web/API/Request
+
 Deno.test("Request", async (context) => {
 	await context.step("生成したインスタンスを確認する", () => {
 		// Arrange

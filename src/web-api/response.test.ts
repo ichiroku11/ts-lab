@@ -3,6 +3,8 @@ import {
 	assertExists
 } from "testing/asserts.ts";
 
+// https://developer.mozilla.org/ja/docs/Web/API/Response
+
 Deno.test("Response.error_生成されるインスタンスを確認する", () => {
 	// Arrange
 	// Act
