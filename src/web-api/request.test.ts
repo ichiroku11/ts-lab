@@ -6,7 +6,7 @@ import {
 
 // https://developer.mozilla.org/ja/docs/Web/API/Request
 
-Deno.test("Request", async (context) => {
+Deno.test("Request.constructor", async (context) => {
 	await context.step("生成したインスタンスを確認する", () => {
 		// Arrange
 		// Act
