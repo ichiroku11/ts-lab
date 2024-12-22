@@ -197,8 +197,10 @@ Deno.test("LogicalAnd_真偽値以外も扱える", async (context) => {
 
 	await context.step("左オペランドがfalse => 左オペランドの値", () => {
 		// Arrange
+		const left = "";
+
 		// Act
-		const actual = "" && "a";
+		const actual = left && "a";
 
 		// Assert
 		assertEquals(actual, "");
@@ -221,8 +223,10 @@ Deno.test("LogicalOr_真偽値以外も扱える", async (context) => {
 
 	await context.step("左オペランドがfalse => 右オペランドの値", () => {
 		// Arrange
+		const left = "";
+
 		// Act
-		const actual = "" || "a";
+		const actual = left || "a";
 
 		// Assert
 		assertEquals(actual, "a");
@@ -236,8 +240,10 @@ Deno.test("LogicalOr_真偽値以外も扱える", async (context) => {
 Deno.test("NullishCoalescing_真偽値以外も扱える", async (context) => {
 	await context.step("左オペランドがnull => 右オペランドの値", () => {
 		// Arrange
+		const left: number | null = null;
+
 		// Act
-		const actual = null ?? 1;
+		const actual = left ?? 1;
 
 		// Assert
 		assertEquals(actual, 1);
@@ -245,8 +251,10 @@ Deno.test("NullishCoalescing_真偽値以外も扱える", async (context) => {
 
 	await context.step("左オペランドがundefined => 右オペランドの値", () => {
 		// Arrange
+		const left: number | undefined = undefined;
+
 		// Act
-		const actual = undefined ?? 1;
+		const actual = left ?? 1;
 
 		// Assert
 		assertEquals(actual, 1);
@@ -254,8 +262,10 @@ Deno.test("NullishCoalescing_真偽値以外も扱える", async (context) => {
 
 	await context.step("左オペランドがnullでもundefinedでもない => 左オペランドの値", () => {
 		// Arrange
+		const left = "a";
+
 		// Act
-		const actual = "a" ?? "b";
+		const actual = left ?? "b";
 
 		// Assert
 		assertEquals(actual, "a");
