@@ -38,3 +38,20 @@ Deno.test("Response.redirect_生成されるインスタンスを確認する", 
 	// ボディ
 	assertEquals(acutal.body, null)
 });
+
+Deno.test("Response.json_生成されるインスタンスを確認する", () => {
+	// Arrange
+	// Act
+	const acutal = Response.json({});
+
+	// Assert
+	// ステータスコード
+	assertEquals(acutal.status, 200);
+
+	// ヘッダー
+	assertExists(acutal.headers);
+	assertEquals(acutal.headers.keys.length, 0);
+
+	// ボディ
+	//todo:
+});
