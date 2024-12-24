@@ -39,7 +39,7 @@ Deno.test("Response.redirect_生成されるインスタンスを確認する", 
 	assertEquals(acutal.body, null)
 });
 
-Deno.test("Response.json_生成されるインスタンスを確認する", () => {
+Deno.test("Response.json_生成されるインスタンスを確認する", async () => {
 	// Arrange
 	// Act
 	const acutal = Response.json({});
@@ -53,5 +53,5 @@ Deno.test("Response.json_生成されるインスタンスを確認する", () =
 	assertEquals(acutal.headers.keys.length, 0);
 
 	// ボディ
-	//todo:
+	assertEquals(await acutal.text(), "{}");
 });
