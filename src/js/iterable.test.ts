@@ -71,12 +71,15 @@ Deno.test("IterableIterator_サンプル", () => {
 			return this;
 		}
 	};
-
-	// Act
 	const actual: number[] = [];
 
-	// Assert
+	// Act
 	for (const value of iterator) {
 		actual.push(value);
 	}
+
+	// Assert
+	assertEquals(actual[0], 1);
+	assertEquals(actual[1], 2);
+	assertEquals(actual[2], 3);
 });
