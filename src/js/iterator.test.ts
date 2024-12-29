@@ -9,7 +9,7 @@ import {
 // イテレーターは、イテレータープロトコルに適合するオブジェクト
 // 最小限nextメソッドを持つ
 // nextメソッドは、IteratorResultオブジェクトを返す
-Deno.test("値を生成するイテレーターのサンプル", () => {
+Deno.test("Iterator_値を生成するサンプル", () => {
 	// Arrange
 	let index = 0;
 	const iterator: Iterator<number> = {
@@ -45,7 +45,7 @@ Deno.test("値を生成するイテレーターのサンプル", () => {
 	assertEquals(actual[3], { done: true, value: undefined });
 });
 
-Deno.test("値を取り出すイテレーターのサンプル", () => {
+Deno.test("Iterator_値を取り出すサンプル", () => {
 	// Arrange
 	const array = [1, 2, 3];
 	// ArrayIterator
