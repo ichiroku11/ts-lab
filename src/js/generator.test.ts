@@ -8,7 +8,7 @@ import {
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Generator
 // functions*
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function*
-Deno.test("next", async (context) => {
+Deno.test("Generator.next", async (context) => {
 	// 2つ連番を生成するGenerator
 	function* generator(value: number) {
 		yield value;
@@ -20,22 +20,23 @@ Deno.test("next", async (context) => {
 		const gen = generator(1);
 
 		// Act
-		const actual1 = gen.next();
-		const actual2 = gen.next();
-		const actual3 = gen.next();
-
+		const actual = [
+			gen.next(),
+			gen.next(),
+			gen.next(),
+		];
 		// Assert
 		// 1つ目
-		assertFalse(actual1.done);
-		assertEquals(1, actual1.value);
+		assertFalse(actual[0].done);
+		assertEquals(actual[0].value, 1);
 
 		// 2つ目
-		assertFalse(actual2.done);
-		assertEquals(2, actual2.value);
+		assertFalse(actual[1].done);
+		assertEquals(actual[1].value, 2);
 
 		// 3つ目
 		// 次の値を生成できないのでdoneはfalseになる
-		assert(actual3.done);
-		assertEquals(undefined, actual3.value);
+		assert(actual[2].done);
+		assertEquals(actual[2].value, undefined);
 	});
 });
