@@ -14,3 +14,27 @@ Deno.test("TypedArray.name._値を確認する", () => {
 	assertEquals(Int16Array.name, "Int16Array");
 	assertEquals(Int32Array.name, "Int32Array");
 });
+
+Deno.test("Uint8Array._各プロパティの値を確認する", () => {
+	// Arrange
+	const array = new Uint8Array(2);
+
+	// Act
+	// Assert
+	assertEquals(array.buffer.byteLength, 2);
+	assertEquals(array.length, 2);
+	assertEquals(array.byteLength, 2);
+	assertEquals(array.byteOffset, 0);
+});
+
+Deno.test("Uint32Array._各プロパティの値を確認する", () => {
+	// Arrange
+	const array = new Uint32Array(2);
+
+	// Act
+	// Assert
+	assertEquals(array.buffer.byteLength, 8);
+	assertEquals(array.length, 2);
+	assertEquals(array.byteLength, 8);
+	assertEquals(array.byteOffset, 0);
+});
