@@ -15,7 +15,7 @@ Deno.test("TypedArray.name._値を確認する", () => {
 	assertEquals(Int32Array.name, "Int32Array");
 });
 
-Deno.test("Uint8Array._各プロパティの値を確認する", () => {
+Deno.test("Uint8Array_各プロパティの値を確認する", () => {
 	// Arrange
 	const array = new Uint8Array(2);
 
@@ -27,7 +27,7 @@ Deno.test("Uint8Array._各プロパティの値を確認する", () => {
 	assertEquals(array.byteOffset, 0);
 });
 
-Deno.test("Uint32Array._各プロパティの値を確認する", () => {
+Deno.test("Uint32Array_各プロパティの値を確認する", () => {
 	// Arrange
 	const array = new Uint32Array(2);
 
