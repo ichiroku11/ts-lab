@@ -1,4 +1,5 @@
 import {
+	assert,
 	assertEquals,
 	assertFalse
 } from "testing/asserts.ts";
@@ -33,4 +34,15 @@ Deno.test("Symbol_動きを確認する", async (context) => {
 		// Assert
 		assertFalse(actual);
 	});	
+});
+
+Deno.test("Symbol.for", async (context) => {
+	await context.step("同一シンボルを取得できる", () => {
+		// Arrange
+		// Act
+		const actual = Symbol.for("x") === Symbol.for("x");
+
+		// Assert
+		assert(actual);
+	});
 });
