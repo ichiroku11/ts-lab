@@ -1,4 +1,7 @@
-import { assertEquals } from "testing/asserts.ts";
+import {
+	assert,
+	assertEquals
+} from "testing/asserts.ts";
 
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames
 Deno.test("Object.getOwnPropertyNames", async (context) => {
@@ -14,10 +17,14 @@ Deno.test("Object.getOwnPropertyNames", async (context) => {
 		const actual = Object.getOwnPropertyNames(obj);
 
 		// Assert
-		assertEquals(actual, ["a", "b", "c"]);
+		// MDNには並び順がどうなるか記載がなさそうなので
+		assert(actual.includes("a"));
+		assert(actual.includes("b"));
+		assert(actual.includes("c"));
 	});
 });
 
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols
 Deno.test("Object.getOwnPropertySymbols", async (context) => {
 	await context.step("シンボルプロパティを配列として取得する", () => {
 		// Arrange
@@ -33,8 +40,9 @@ Deno.test("Object.getOwnPropertySymbols", async (context) => {
 		const actual = Object.getOwnPropertySymbols(obj);
 
 		// Assert
-		// todo: 並び順？
-		assertEquals(actual, [a, b]);
+		// MDNには並び順がどうなるか記載がなさそうなので
+		assert(actual.includes(a));
+		assert(actual.includes(b));
 	});
 
 	await context.step("シンボルプロパティが存在しないオブジェクトを引数に指定すると戻り値は空配列", () => {
