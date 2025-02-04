@@ -46,3 +46,16 @@ Deno.test("Symbol.for", async (context) => {
 		assert(actual);
 	});
 });
+
+Deno.test("Symbol.keyFor", async (context) => {
+	await context.step("シンボルのキーを取得できる", () => {
+		// Arrange
+		const symbol = Symbol.for("x");
+
+		// Act
+		const actual = Symbol.keyFor(symbol);
+
+		// Assert
+		assertEquals(actual, "x");
+	});
+});
