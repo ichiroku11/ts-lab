@@ -48,7 +48,7 @@ Deno.test("Symbol.for", async (context) => {
 });
 
 Deno.test("Symbol.keyFor", async (context) => {
-	await context.step("シンボルのキーを取得できる", () => {
+	await context.step("Symbol.forで生成したシンボルのキーを取得できる", () => {
 		// Arrange
 		const symbol = Symbol.for("x");
 
@@ -58,4 +58,18 @@ Deno.test("Symbol.keyFor", async (context) => {
 		// Assert
 		assertEquals(actual, "x");
 	});
+
+	await context.step("Symbolで生成したシンボルのキーを取得できない", () => {
+		// Arrange
+		// グローバルシンボルレジストリに登録されない
+		const symbol = Symbol("x");
+
+		// Act
+		const actual = Symbol.keyFor(symbol);
+
+		// Assert
+		assertEquals(actual, undefined);
+	});
 });
+
+// todo: Symbol.iterator
