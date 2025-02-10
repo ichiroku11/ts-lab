@@ -1,7 +1,8 @@
 import {
 	assert,
 	assertEquals,
-	assertFalse
+	assertFalse,
+	assertInstanceOf
 } from "testing/asserts.ts";
 
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol
@@ -36,6 +37,7 @@ Deno.test("Symbol_動きを確認する", async (context) => {
 	});	
 });
 
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for
 Deno.test("Symbol.for", async (context) => {
 	await context.step("同一シンボルを取得できる", () => {
 		// Arrange
@@ -47,6 +49,7 @@ Deno.test("Symbol.for", async (context) => {
 	});
 });
 
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/keyFor
 Deno.test("Symbol.keyFor", async (context) => {
 	await context.step("Symbol.forで生成したシンボルのキーを取得できる", () => {
 		// Arrange
@@ -72,4 +75,16 @@ Deno.test("Symbol.keyFor", async (context) => {
 	});
 });
 
-// todo: Symbol.iterator
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
+Deno.test("Symbol.iterator", async (context) => {
+	await context.step("配列からイテレータープロトコルに準拠するオブジェクトを返す", () => {
+		// Arrange
+		const array = [1, 2, 3];
+
+		// Act
+		const iterator = array[Symbol.iterator];
+
+		// Assert
+		assertInstanceOf(iterator, Function);
+	});
+});
