@@ -87,4 +87,24 @@ Deno.test("Symbol.iterator", async (context) => {
 		// Assert
 		assertInstanceOf(iterator, Function);
 	});
+
+	await context.step("反復可能プロトコルに準拠するオブジェクトを実装する", () => {
+		// Arrange
+		const obj = {
+			[Symbol.iterator]: function*() {
+				yield 1;
+				yield 2;
+				yield 3;
+			}
+		};
+		const actual: number[] = [];
+
+		// Act
+		for (const value of obj) {
+			actual.push(value);
+		}
+
+		// Assert
+		assertEquals(actual, [1, 2, 3]);
+	});
 });
