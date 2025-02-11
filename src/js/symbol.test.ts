@@ -77,7 +77,7 @@ Deno.test("Symbol.keyFor", async (context) => {
 
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
 Deno.test("Symbol.iterator", async (context) => {
-	await context.step("配列からイテレータープロトコルに準拠するオブジェクトを返す", () => {
+	await context.step("配列からイテレータープロトコルに準拠するオブジェクトを返すメソッドを取得できる", () => {
 		// Arrange
 		const array = [1, 2, 3];
 
@@ -91,6 +91,7 @@ Deno.test("Symbol.iterator", async (context) => {
 	await context.step("反復可能プロトコルに準拠するオブジェクトを実装する", () => {
 		// Arrange
 		const obj = {
+			// イテレータープロトコルに準拠するオブジェクトを返す
 			[Symbol.iterator]: function*() {
 				yield 1;
 				yield 2;
