@@ -37,6 +37,41 @@ Deno.test("Symbol_動きを確認する", async (context) => {
 	});	
 });
 
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
+Deno.test("Symbol.iterator", async (context) => {
+	await context.step("配列からイテレータープロトコルに準拠するオブジェクトを返すメソッドを取得できる", () => {
+		// Arrange
+		const array = [1, 2, 3];
+
+		// Act
+		const iterator = array[Symbol.iterator];
+
+		// Assert
+		assertInstanceOf(iterator, Function);
+	});
+
+	await context.step("反復可能プロトコルに準拠するオブジェクトを実装する", () => {
+		// Arrange
+		const obj = {
+			// イテレータープロトコルに準拠するオブジェクトを返す
+			[Symbol.iterator]: function*() {
+				yield 1;
+				yield 2;
+				yield 3;
+			}
+		};
+		const actual: number[] = [];
+
+		// Act
+		for (const value of obj) {
+			actual.push(value);
+		}
+
+		// Assert
+		assertEquals(actual, [1, 2, 3]);
+	});
+});
+
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for
 Deno.test("Symbol.for", async (context) => {
 	await context.step("同一シンボルを取得できる", () => {
@@ -72,40 +107,5 @@ Deno.test("Symbol.keyFor", async (context) => {
 
 		// Assert
 		assertEquals(actual, undefined);
-	});
-});
-
-// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
-Deno.test("Symbol.iterator", async (context) => {
-	await context.step("配列からイテレータープロトコルに準拠するオブジェクトを返すメソッドを取得できる", () => {
-		// Arrange
-		const array = [1, 2, 3];
-
-		// Act
-		const iterator = array[Symbol.iterator];
-
-		// Assert
-		assertInstanceOf(iterator, Function);
-	});
-
-	await context.step("反復可能プロトコルに準拠するオブジェクトを実装する", () => {
-		// Arrange
-		const obj = {
-			// イテレータープロトコルに準拠するオブジェクトを返す
-			[Symbol.iterator]: function*() {
-				yield 1;
-				yield 2;
-				yield 3;
-			}
-		};
-		const actual: number[] = [];
-
-		// Act
-		for (const value of obj) {
-			actual.push(value);
-		}
-
-		// Assert
-		assertEquals(actual, [1, 2, 3]);
 	});
 });
