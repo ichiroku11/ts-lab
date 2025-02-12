@@ -37,6 +37,35 @@ Deno.test("Symbol_動きを確認する", async (context) => {
 	});	
 });
 
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance
+Deno.test("Symbol.hasInstance", async (context) => {
+	class MyArray1 {
+	}
+
+	class MyArray2 {
+		// instanceof演算子で呼び出されるメソッドを定義する
+		static [Symbol.hasInstance](instance: unknown): boolean {
+			return Array.isArray(instance);
+		}
+	}
+
+	await context.step("instanceof演算子で呼び出されるメソッドが存在しない場合の動きを確認する", () => {
+		// Arrange
+		// Act
+		// Assert
+		// instanceof演算子で呼び出されるメソッドがないため、false
+		assertFalse([] instanceof MyArray1);
+	});
+
+	await context.step("instanceof演算子で呼び出されるメソッドが存在する場合の動きを確認する", () => {
+		// Arrange
+		// Act
+		// Assert
+		// instanceof演算子で呼び出されるメソッドがあるため、true
+		assert([] instanceof MyArray2);
+	});
+});
+
 // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
 Deno.test("Symbol.iterator", async (context) => {
 	await context.step("配列からイテレータープロトコルに準拠するオブジェクトを返すメソッドを取得できる", () => {
