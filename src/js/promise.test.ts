@@ -176,3 +176,10 @@ Deno.test("Promise.then", async (context) => {
 		assertEquals(2, await promise);
 	});
 });
+
+// todo:
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/try
+/*
+Deno.test("Promise.try", async (context) => {
+});
+*/
