@@ -1,5 +1,5 @@
 import {
-	assertEquals
+	assertEquals,
 } from "testing/asserts.ts";
 
 // 参考
@@ -64,4 +64,23 @@ Deno.test("Iterator_値を取り出すサンプル", () => {
 	assertEquals(actual[1], { done: false, value: 2 });
 	assertEquals(actual[2], { done: false, value: 3 });
 	assertEquals(actual[3], { done: true, value: undefined });
+});
+
+Deno.test("Iterator.drop", async (context) => {
+	function* generator() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	await context.step("指定された数だけ値を読み飛ばす", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.drop(2)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [3]);
+	});
 });
