@@ -83,4 +83,15 @@ Deno.test("Iterator.drop", async (context) => {
 		// Assert
 		assertEquals(actual, [3]);
 	});
+
+	await context.step("要素数を超えて読み飛ばしても例外は発生しない", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.drop(10)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, []);
+	});
 });
