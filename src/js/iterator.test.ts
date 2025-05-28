@@ -1,4 +1,5 @@
 import {
+	assert,
 	assertEquals,
 } from "testing/asserts.ts";
 
@@ -93,5 +94,23 @@ Deno.test("Iterator.drop", async (context) => {
 
 		// Assert
 		assertEquals(actual, []);
+	});
+});
+
+Deno.test("Iterator.every", async (context) => {
+	function* generator() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	await context.step("指定した関数においてすべての要素がtrueを返すとtrueを返す", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.every(value => value > 0);
+
+		// Assert
+		assert(actual);
 	});
 });
