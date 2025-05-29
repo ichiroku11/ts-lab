@@ -102,13 +102,34 @@ Deno.test("Iterator.every", async (context) => {
 		yield 1;
 		yield 2;
 		yield 3;
+		console.log("すべての要素が列挙される");
 	}
 
-	await context.step("指定した関数においてすべての要素がtrueを返すとtrueを返す", () => {
+	await context.step("指定した関数において、すべての要素がtrueを返すとtrueを返す", () => {
 		// Arrange
 		// Act
 		const actual = generator()
 			.every(value => value > 0);
+
+		// Assert
+		assert(actual);
+	});
+});
+
+Deno.test("Iterator.some", async (context) => {
+	function* generator() {
+		yield 1;
+		yield 2;
+		// ここまで到達しない（このメッセージは表示されない）
+		console.log("条件を満たす要素が見つかった以降は列挙されない");
+		yield 3;
+	}
+
+	await context.step("指定した関数において、いずれかの要素がtrueを返すとtrueを返す", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.some(value => value == 2);
 
 		// Assert
 		assert(actual);
