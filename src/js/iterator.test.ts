@@ -135,3 +135,21 @@ Deno.test("Iterator.some", async (context) => {
 		assert(actual);
 	});
 });
+
+Deno.test("Iterator.toArray", async (context) => {
+	function* generator() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	await context.step("取り出される要素で新しい配列インスタンスを生成する", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [1, 2, 3]);
+	});
+});
