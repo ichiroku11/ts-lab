@@ -54,4 +54,17 @@ Deno.test("Array.at", async (context) => {
 	});
 });
 
-// todo: values
+Deno.test("Array.values", async (context) => {
+	await context.step("要素を列挙できるIteratorを返す", () => {
+		// Arrange
+		// Act
+		const iterator = [1, 2, 3].values();
+
+		// Assert
+		assertEquals(iterator.next().value, 1);
+		assertEquals(iterator.next().value, 2);
+		assertEquals(iterator.next().value, 3);
+		assertEquals(iterator.next().value, undefined);
+	});
+});
+
