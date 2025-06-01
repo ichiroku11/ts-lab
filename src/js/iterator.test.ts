@@ -153,6 +153,17 @@ Deno.test("Iterator.take", async (context) => {
 		// Assert
 		assertEquals(actual, [1, 2]);
 	});
+
+	await context.step("要素数を超えて読み出しても例外は発生しない", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.take(10)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [1, 2, 3]);
+	});
 });
 
 Deno.test("Iterator.toArray", async (context) => {
