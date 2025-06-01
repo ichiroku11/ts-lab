@@ -136,6 +136,25 @@ Deno.test("Iterator.some", async (context) => {
 	});
 });
 
+Deno.test("Iterator.take", async (context) => {
+	function* generator() {
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+
+	await context.step("指定された数だけ値を読み出す", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.take(2)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [1, 2]);
+	});
+});
+
 Deno.test("Iterator.toArray", async (context) => {
 	function* generator() {
 		yield 1;
