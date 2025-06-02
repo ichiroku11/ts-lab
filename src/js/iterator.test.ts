@@ -136,6 +136,30 @@ Deno.test("Iterator.some", async (context) => {
 	});
 });
 
+Deno.test("Iterator.forEach", async (context) => {
+	function* generator() {
+		yield "a";
+		yield "b";
+		yield "c";
+	}
+
+	await context.step("それぞれ要素に対して1回ずつコールバック関数が呼び出される", () => {
+		// Arrange
+		const actual:[string, number][] = [];
+
+		// Act
+		generator()
+			.forEach((value, index) => {
+				actual.push([value, index]);
+			});
+
+		// Assert
+		// インデックスは0から始まる
+		assertEquals(actual, [["a", 0], ["b", 1], ["c", 2]]);
+	});
+});
+
+
 Deno.test("Iterator.take", async (context) => {
 	function* generator() {
 		yield 1;
