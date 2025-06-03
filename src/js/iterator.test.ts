@@ -1,6 +1,7 @@
 import {
 	assert,
 	assertEquals,
+	assertThrows,
 } from "testing/asserts.ts";
 
 // 参考
@@ -95,6 +96,31 @@ Deno.test("Iterator.drop", async (context) => {
 		// Assert
 		assertEquals(actual, []);
 	});
+
+	await context.step("引数に0を指定できる", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.drop(0)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [1, 2, 3]);
+	});
+
+	await context.step("引数にマイナスを指定すると例外が発生する", () => {
+		// Arrange
+		// Act
+		// Assert
+		const error = assertThrows(
+			() => {
+				generator().drop(-1);
+			},
+			RangeError);
+
+		console.log(error.message);
+		// -1 must be positive
+	});
 });
 
 Deno.test("Iterator.every", async (context) => {
@@ -158,7 +184,6 @@ Deno.test("Iterator.forEach", async (context) => {
 		assertEquals(actual, [["a", 0], ["b", 1], ["c", 2]]);
 	});
 });
-
 
 Deno.test("Iterator.take", async (context) => {
 	function* generator() {
