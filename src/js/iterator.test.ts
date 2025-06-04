@@ -213,6 +213,31 @@ Deno.test("Iterator.take", async (context) => {
 		// Assert
 		assertEquals(actual, [1, 2, 3]);
 	});
+
+	await context.step("引数に0を指定できる", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.take(0)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, []);
+	});
+
+	await context.step("引数にマイナスを指定すると例外が発生する", () => {
+		// Arrange
+		// Act
+		// Assert
+		const error = assertThrows(
+			() => {
+				generator().take(-1);
+			},
+			RangeError);
+
+		console.log(error.message);
+		// -1 must be positive
+	});
 });
 
 Deno.test("Iterator.toArray", async (context) => {
