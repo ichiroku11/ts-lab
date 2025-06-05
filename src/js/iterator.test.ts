@@ -69,16 +69,10 @@ Deno.test("Iterator_値を取り出すサンプル", () => {
 });
 
 Deno.test("Iterator.drop", async (context) => {
-	function* generator() {
-		yield 1;
-		yield 2;
-		yield 3;
-	}
-
 	await context.step("指定された数だけ値を読み飛ばす", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.drop(2)
 			.toArray();
 
@@ -89,7 +83,7 @@ Deno.test("Iterator.drop", async (context) => {
 	await context.step("要素数を超えて読み飛ばしても例外は発生しない", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.drop(10)
 			.toArray();
 
@@ -100,7 +94,7 @@ Deno.test("Iterator.drop", async (context) => {
 	await context.step("引数に0を指定できる", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.drop(0)
 			.toArray();
 
@@ -114,7 +108,7 @@ Deno.test("Iterator.drop", async (context) => {
 		// Assert
 		const error = assertThrows(
 			() => {
-				generator().drop(-1);
+				[1, 2, 3].values().drop(-1);
 			},
 			RangeError);
 
@@ -163,18 +157,13 @@ Deno.test("Iterator.some", async (context) => {
 });
 
 Deno.test("Iterator.forEach", async (context) => {
-	function* generator() {
-		yield "a";
-		yield "b";
-		yield "c";
-	}
-
 	await context.step("それぞれ要素に対して1回ずつコールバック関数が呼び出される", () => {
 		// Arrange
 		const actual:[string, number][] = [];
 
 		// Act
-		generator()
+		["a", "b", "c"]
+			.values()
 			.forEach((value, index) => {
 				actual.push([value, index]);
 			});
@@ -186,16 +175,10 @@ Deno.test("Iterator.forEach", async (context) => {
 });
 
 Deno.test("Iterator.take", async (context) => {
-	function* generator() {
-		yield 1;
-		yield 2;
-		yield 3;
-	}
-
 	await context.step("指定された数だけ値を読み出す", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.take(2)
 			.toArray();
 
@@ -206,7 +189,7 @@ Deno.test("Iterator.take", async (context) => {
 	await context.step("要素数を超えて読み出しても例外は発生しない", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.take(10)
 			.toArray();
 
@@ -217,7 +200,7 @@ Deno.test("Iterator.take", async (context) => {
 	await context.step("引数に0を指定できる", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.take(0)
 			.toArray();
 
@@ -231,7 +214,7 @@ Deno.test("Iterator.take", async (context) => {
 		// Assert
 		const error = assertThrows(
 			() => {
-				generator().take(-1);
+				[1, 2, 3].values().take(-1);
 			},
 			RangeError);
 
@@ -241,16 +224,10 @@ Deno.test("Iterator.take", async (context) => {
 });
 
 Deno.test("Iterator.toArray", async (context) => {
-	function* generator() {
-		yield 1;
-		yield 2;
-		yield 3;
-	}
-
 	await context.step("取り出される要素で新しい配列インスタンスを生成する", () => {
 		// Arrange
 		// Act
-		const actual = generator()
+		const actual = [1, 2, 3].values()
 			.toArray();
 
 		// Assert
