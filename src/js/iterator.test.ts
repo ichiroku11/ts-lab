@@ -154,6 +154,21 @@ Deno.test("Iterator.forEach", async (context) => {
 	});
 });
 
+Deno.test("Iterator.flatMap", async (context) => {
+	await context.step("配列の配列を平坦化するサンプル", () => {
+		// Arrange
+		const values = [[1, 2, 3], [4, 5]].values();
+	
+		// Act
+		const actual = values
+			.flatMap(value => value)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [1, 2, 3, 4, 5]);
+	});
+});
+
 Deno.test("Iterator.some", async (context) => {
 	function* generator() {
 		yield 1;
