@@ -136,6 +136,26 @@ Deno.test("Iterator.every", async (context) => {
 	});
 });
 
+Deno.test("Iterator.find", async (context) => {
+	function* generator() {
+		yield 1;
+		yield 2;
+		// ここまで到達しない（このメッセージは表示されない）
+		console.log("条件を満たす要素が見つかった以降は列挙されない");
+		yield 3;
+	}
+
+	await context.step("条件を満たす最初の要素を返す", () => {
+		// Arrange
+		// Act
+		const actual = generator()
+			.find(value => value == 2);
+
+		// Assert
+		assertEquals(actual, 2);
+	});
+});
+
 Deno.test("Iterator.forEach", async (context) => {
 	await context.step("それぞれ要素に対して1回ずつコールバック関数が呼び出される", () => {
 		// Arrange
