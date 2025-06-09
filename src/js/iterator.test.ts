@@ -154,6 +154,17 @@ Deno.test("Iterator.find", async (context) => {
 		// Assert
 		assertEquals(actual, 2);
 	});
+
+	await context.step("条件を満たす要素が見つからない場合はundefinedを返す", () => {
+		// Arrange
+		// Act
+		const actual = [].values()
+			.find(value => value == 1);
+
+		// Assert
+		assertEquals(actual, undefined);
+	});
+
 });
 
 Deno.test("Iterator.forEach", async (context) => {
