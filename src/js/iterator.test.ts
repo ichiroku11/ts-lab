@@ -200,6 +200,20 @@ Deno.test("Iterator.flatMap", async (context) => {
 	});
 });
 
+Deno.test("Iterator.reduce", async (context) => {
+	await context.step("要素を集計するサンプル", () => {
+		// Arrange
+		const values = [1, 2, 3].values();
+	
+		// Act
+		const actual = values
+			.reduce((previous, current) => previous + current);
+
+		// Assert
+		assertEquals(actual, 6);
+	});
+});
+
 Deno.test("Iterator.some", async (context) => {
 	function* generator() {
 		yield 1;
