@@ -200,6 +200,21 @@ Deno.test("Iterator.flatMap", async (context) => {
 	});
 });
 
+Deno.test("Iterator.map", async (context) => {
+	await context.step("要素を変換するサンプル", () => {
+		// Arrange
+		const values = [1, 2, 3].values();
+	
+		// Act
+		const actual = values
+			.map(value => value * value)
+			.toArray()
+
+		// Assert
+		assertEquals(actual, [1, 4, 9]);
+	});
+});
+
 Deno.test("Iterator.reduce", async (context) => {
 	await context.step("要素を集計するサンプル", () => {
 		// Arrange
