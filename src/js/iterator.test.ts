@@ -136,6 +136,19 @@ Deno.test("Iterator.every", async (context) => {
 	});
 });
 
+Deno.test("Iterator.filter", async (context) => {
+	await context.step("条件を満たす要素のみを返す", () => {
+		// Arrange
+		// Act
+		const actual = [1, 2, 3].values()
+			.filter(value => value % 2 == 0)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [2]);
+	});
+});
+
 Deno.test("Iterator.find", async (context) => {
 	function* generator() {
 		yield 1;
@@ -164,7 +177,21 @@ Deno.test("Iterator.find", async (context) => {
 		// Assert
 		assertEquals(actual, undefined);
 	});
+});
 
+Deno.test("Iterator.flatMap", async (context) => {
+	await context.step("配列の配列を平坦化するサンプル", () => {
+		// Arrange
+		const values = [[1, 2, 3], [4, 5]].values();
+	
+		// Act
+		const actual = values
+			.flatMap(value => value)
+			.toArray();
+
+		// Assert
+		assertEquals(actual, [1, 2, 3, 4, 5]);
+	});
 });
 
 Deno.test("Iterator.forEach", async (context) => {
@@ -182,21 +209,6 @@ Deno.test("Iterator.forEach", async (context) => {
 		// Assert
 		// インデックスは0から始まる
 		assertEquals(actual, [["a", 0], ["b", 1], ["c", 2]]);
-	});
-});
-
-Deno.test("Iterator.flatMap", async (context) => {
-	await context.step("配列の配列を平坦化するサンプル", () => {
-		// Arrange
-		const values = [[1, 2, 3], [4, 5]].values();
-	
-		// Act
-		const actual = values
-			.flatMap(value => value)
-			.toArray();
-
-		// Assert
-		assertEquals(actual, [1, 2, 3, 4, 5]);
 	});
 });
 
